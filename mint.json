@@ -37,6 +37,10 @@
   },
   "tabs": [
     {
+      "name": "Integrations",
+      "url": "integrations"
+    },
+    {
       "name": "API Reference",
       "url": "api-reference"
     }
@@ -44,16 +48,20 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": [
+        "documentation/introduction",
+        "documentation/quickstart",
+        "documentation/development"
+      ]
     },
     {
       "group": "Essentials",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation"
+        "documentation/essentials/markdown",
+        "documentation/essentials/code",
+        "documentation/essentials/images",
+        "documentation/essentials/settings",
+        "documentation/essentials/navigation"
       ]
     },
     {
