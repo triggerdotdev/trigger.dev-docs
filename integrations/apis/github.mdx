@@ -1,0 +1,82 @@
+---
+title: Introduction
+---
+
+## Authentication
+
+GitHub supports Personal Access Tokens and OAuth.
+
+```ts
+import { Github } from "@trigger.dev/github";
+
+//create GitHub client using a token
+const github = new Github({
+  id: "github",
+  token: process.env.GITHUB_TOKEN,
+});
+
+//create GitHub client using OAuth
+const github2 = new Github({
+  id: "github2",
+});
+```
+
+## Webhooks and actions
+
+<CardGroup cols={2}>
+  <Card
+    title="Webhooks"
+    icon="webhook"
+    href="/integrations/apis/github-webhooks"
+  >
+    Trigger actions when events happen in GitHub, such as a new commit or a new
+    issue.
+  </Card>
+  <Card
+    title="Actions"
+    icon="sparkles"
+    href="/integrations/apis/github-actions"
+  >
+    Perform actions in GitHub, such as creating a new issue or a new comment.
+  </Card>
+</CardGroup>
+
+## Using the underlying client
+
+You can use the underlying client to do anything Octokit supports. In this example we create a project card when a new issue is opened..
+
+```ts
+import { Github } from "@trigger.dev/github";
+
+const github = new Github({
+  id: "github",
+  token: process.env.GITHUB_TOKEN,
+});
+
+new Job(client, {
+  id: "alert-on-new-github-issues",
+  name: "Alert on new GitHub issues",
+  version: "0.1.1",
+  trigger: github.triggers.repo({
+    event: events.onIssueOpened,
+    repo: "triggerdotdev/trigger.dev",
+  }),
+  run: async (payload, io, ctx) => {
+    //wrap the SDK call in runTask
+    const { data } = await io.runTask(
+      "create-card",
+      { name: "Create card" },
+      async () => {
+        //create a project card using the underlying client
+        return io.github.client.rest.projects.createCard({
+          column_id: 123,
+          note: "test",
+        });
+      }
+    );
+
+    //log the url of the created card
+    await io.logger.info(data.url);
+  },
+});
+```

@@ -69,6 +69,10 @@
       "pages": ["integrations/introduction"]
     },
     {
+      "group": "Integrations",
+      "pages": [{ "group": "GitHub", "pages": ["integrations/apis/github"] }]
+    },
+    {
       "group": "API Documentation",
       "pages": ["api-reference/authentication"]
     },
