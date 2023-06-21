@@ -65,6 +65,10 @@
       ]
     },
     {
+      "group": "Basics",
+      "pages": ["integrations/introduction"]
+    },
+    {
       "group": "API Documentation",
       "pages": ["api-reference/authentication"]
     },

@@ -1,0 +1,88 @@
+---
+title: Introduction
+description: "Integrations make it easy to authenticate and use APIs."
+---
+
+## What is an integration?
+
+An integration is a package you install that makes it easy to work with a specific API.
+
+- Creates a connection to the API
+- Provides a set of actions to work with the API
+- Provides a set of triggers to listen for events from the API
+- Allows you to use the full underlying authenticated SDK client directly
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="lock" href="/integrations/authentication">
+    Learn how to authenticate with an API using OAuth or API keys.
+  </Card>
+  <Card
+    title="Using clients"
+    icon="location-crosshairs"
+    href="/integrations/clients"
+  >
+    Deep dive into how to use clients
+  </Card>
+  <Card title="Our integrations" icon="bolt" href="/integrations/list">
+    Browse our integrations and learn how to use them.
+  </Card>
+  <Card
+    title="Create an integration"
+    icon="wand-magic-sparkles"
+    href="/integrations/create"
+  >
+    Learn how to create your own integration.
+  </Card>
+</CardGroup>
+
+## An example
+
+This job sends Slack messages when a new GitHub issue is opened on the `triggerdotdev/trigger.dev` repo.
+
+```ts
+import { Github } from "@trigger.dev/github";
+import { Slack } from "@trigger.dev/slack";
+
+//create GitHub client using a token
+const github = new Github({
+  id: "github",
+  token: process.env.GITHUB_TOKEN,
+});
+
+//create Slack client using OAuth
+const slack = new Slack({
+  id: "slack",
+});
+
+new Job(client, {
+  id: "alert-on-new-github-issues",
+  name: "Alert on new GitHub issues",
+  version: "0.1.1",
+  integrations: {
+    //include the slack integration
+    slack,
+  },
+  //use the github integration to listen for new issues
+  trigger: github.triggers.repo({
+    event: events.onIssueOpened,
+    repo: "triggerdotdev/trigger.dev",
+  }),
+  run: async (payload, io, ctx) => {
+    await io.wait("wait", 5); // wait for 5 seconds
+
+    //send a message to slack
+    const response = await io.slack.postMessage("Slack alert", {
+      text: `New Issue opened: ${payload.issue.html_url}`,
+      channel: "C04GWBTDQ7W",
+    });
+
+    return response;
+  },
+});
+```
+
+There are some things work highlighting here:
+
+- You can create integration clients using OAuth or API keys/tokens
+- You can use the integration to listen for events from the API
+- You can use the integration to make API calls inside the `run` function
