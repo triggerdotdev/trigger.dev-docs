@@ -61,7 +61,8 @@
           "group": "GitHub",
           "pages": [
             "integrations/apis/github",
-            "integrations/apis/github-triggers"
+            "integrations/apis/github-triggers",
+            "integrations/apis/github-tasks"
           ]
         },
         {
