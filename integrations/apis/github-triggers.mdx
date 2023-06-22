@@ -2,11 +2,24 @@
 title: Triggers
 ---
 
-## onIssue
+## All triggers
 
-When an issue is created, modified or deleted. [GitHub's documentation](https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#issues)
+| Function Name         | Description                                                                      |
+| --------------------- | -------------------------------------------------------------------------------- |
+| `onIssue`             | When any action is performed on an issue.                                        |
+| `onIssueOpened`       | When an issue is opened.                                                         |
+| `onIssueAssigned`     | When an issue is assigned.                                                       |
+| `onIssueComment`      | When an issue is commented on.                                                   |
+| `onStar`              | When a repo is starred or unstarred.                                             |
+| `onNewStar`           | When a repo is starred.                                                          |
+| `onNewRepository`     | When a new repo is created.                                                      |
+| `onNewBranchOrTag`    | When a new branch or tag is created.                                             |
+| `onNewBranch`         | When a new branch is created.                                                    |
+| `onPush`              | When a push is made to a repo.                                                   |
+| `onPullRequest`       | When activity occurs on a pull request (excluding reviews, issues, or comments). |
+| `onPullRequestReview` | When a pull request review has activity.                                         |
 
-You can look at the `action` property of the payload to know what happened.
+## Usage
 
 ```ts
 new Job(client, {
@@ -20,7 +33,7 @@ new Job(client, {
   }),
   run: async (payload, io, ctx) => {
     await io.logger.info("This is a simple log info message");
-    return { payload, ctx };
+    //do stuff
   },
 });
 ```
