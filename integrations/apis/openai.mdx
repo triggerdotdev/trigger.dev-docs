@@ -50,6 +50,8 @@ new Job(client, {
 
 ## Tasks
 
+Tasks that are marked as "long-running" can last longer than your serverless timeout – they are performed on one of our background workers.
+
 | Function Name                    | Description                                                               | Long-running? |
 | -------------------------------- | ------------------------------------------------------------------------- | ------------- |
 | `createCompletion`               | Generates text completions given a prompt.                                |
