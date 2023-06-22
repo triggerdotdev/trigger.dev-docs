@@ -55,16 +55,6 @@
       ]
     },
     {
-      "group": "Essentials",
-      "pages": [
-        "documentation/essentials/markdown",
-        "documentation/essentials/code",
-        "documentation/essentials/images",
-        "documentation/essentials/settings",
-        "documentation/essentials/navigation"
-      ]
-    },
-    {
       "group": "Basics",
       "pages": ["integrations/introduction"]
     },
