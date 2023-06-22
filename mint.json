@@ -67,6 +67,10 @@
             "integrations/apis/github",
             "integrations/apis/github-triggers"
           ]
+        },
+        {
+          "group": "OpenAI",
+          "pages": ["integrations/apis/openai"]
         }
       ]
     },
