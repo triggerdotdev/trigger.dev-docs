@@ -55,7 +55,8 @@ new Job(client, {
   version: "0.1.1",
   trigger: github.triggers.repo({
     event: events.onIssueOpened,
-    repo: "triggerdotdev/trigger.dev",
+    owner: "triggerdotdev",
+    repo: "trigger.dev",
   }),
   run: async (payload, io, ctx) => {
     //wrap the SDK call in runTask

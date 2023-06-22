@@ -65,7 +65,8 @@ new Job(client, {
   //use the github integration to listen for new issues
   trigger: github.triggers.repo({
     event: events.onIssueOpened,
-    repo: "triggerdotdev/trigger.dev",
+    owner: "triggerdotdev",
+    repo: "trigger.dev",
   }),
   run: async (payload, io, ctx) => {
     await io.wait("wait", 5); // wait for 5 seconds
