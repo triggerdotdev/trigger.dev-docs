@@ -70,7 +70,15 @@
     },
     {
       "group": "Integrations",
-      "pages": [{ "group": "GitHub", "pages": ["integrations/apis/github"] }]
+      "pages": [
+        {
+          "group": "GitHub",
+          "pages": [
+            "integrations/apis/github",
+            "integrations/apis/github-triggers"
+          ]
+        }
+      ]
     },
     {
       "group": "API Documentation",
