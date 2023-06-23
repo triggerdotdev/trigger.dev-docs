@@ -32,7 +32,6 @@ Create a file called in your app folder called `api/trigger.route.ts`
 ```typescript app/api/trigger/route.ts
 import { Job, TriggerClient } from "@trigger.dev/sdk";
 import { createAppRoute } from "@trigger.dev/nextjs";
-import { events } from "@trigger.dev/github";
 
 //create the client
 export const client = new TriggerClient({
@@ -47,22 +46,6 @@ export const client = new TriggerClient({
 export const { POST, dynamic } = createAppRoute(client, {
   path: "/api/trigger",
 });
-
-//your first job, subscribes to GitHub issues opened
-new Job(client, {
-  id: "alert-on-new-github-issues",
-  name: "Alert on new GitHub issues",
-  version: "0.1.0",
-  trigger: github.triggers.repo({
-    event: events.onIssueOpened,
-    owner: "triggerdotdev",
-    repo: "empty",
-  }),
-  run: async (payload, io, ctx) => {
-    await io.wait("wait", 5); // wait for 5 seconds
-    await io.logger.info("This is a simple log info message");
-  },
-});
 ```
 
   </Tab>
@@ -75,7 +58,6 @@ Create a file in your pages directory called `api/trigger.ts`
 ```typescript pages/api/trigger.ts
 import { Job, TriggerClient } from "@trigger.dev/sdk";
 import { createPagesRoute } from "@trigger.dev/nextjs";
-import { events } from "@trigger.dev/github";
 
 //create the client
 export const client = new TriggerClient({
@@ -90,22 +72,6 @@ export const client = new TriggerClient({
 const { handler, config } = createPagesRoute(client, { path: "/api/trigger" });
 export { config };
 export default handler;
-
-//your first job, subscribes to GitHub issues opened
-new Job(client, {
-  id: "alert-on-new-github-issues",
-  name: "Alert on new GitHub issues",
-  version: "0.1.0",
-  trigger: github.triggers.repo({
-    event: events.onIssueOpened,
-    owner: "triggerdotdev",
-    repo: "empty",
-  }),
-  run: async (payload, io, ctx) => {
-    await io.wait("wait", 5); // wait for 5 seconds
-    await io.logger.info("This is a simple log info message");
-  },
-});
 ```
 
   </Tab>
