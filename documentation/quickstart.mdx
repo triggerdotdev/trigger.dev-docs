@@ -3,7 +3,7 @@ title: "Quickstart"
 description: "Start creating Jobs in under 5 minutes"
 ---
 
-## Install the packages
+## Use the CLI
 
 The basic packages needed are the SDK and the Next.js package.
 
@@ -91,5 +91,53 @@ TRIGGER_API_KEY=tr_dev_abcdefghijkl
 VERCEL_URL=http://localhost:3000
 
 # You only need the API URL if you're self-hosting the Trigger.dev platform
-# TRIGGER_API_URL=http://localhost:3000
+# TRIGGER_API_URL=http://localhost:3010
+```
+
+## Creating your first job
+
+We're going to create a simple Job that listens for GitHub issues being opened and logs.
+
+Install the GitHub integration package:
+
+```bash
+npm install @trigger.dev/github@next
+```
+
+For now we'll add the Job to the same file as your route.
+
+<Note>
+  When you move your Jobs to another file you need to import them somewhere that
+  is run. We recommended importing them at the top of your route file that we
+  created above by doing `import "@/jobs/myjob.ts`
+</Note>
+
+```typescript the file you created above
+//add this to the top
+import { Github, events } from "@trigger.dev/github";
+
+//add this to the bottom
+
+//create GitHub client
+const github = new Github({
+  id: "github",
+  //todo you will need to add GITHUB_TOKEN to your .env.local file with a valid GitHub token
+  token: process.env.GITHUB_TOKEN,
+});
+
+//your first job, subscribes to GitHub issues opened
+new Job(client, {
+  id: "alert-on-new-github-issues",
+  name: "Alert on new GitHub issues",
+  version: "0.1.0",
+  trigger: github.triggers.repo({
+    event: events.onIssueOpened,
+    owner: "triggerdotdev",
+    repo: "empty",
+  }),
+  run: async (payload, io, ctx) => {
+    await io.wait("wait", 5); // wait for 5 seconds
+    await io.logger.info("This is a simple log info message");
+  },
+});
 ```
