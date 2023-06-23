@@ -21,16 +21,6 @@
     "default": "dark",
     "isHidden": true
   },
-  "topbarLinks": [
-    {
-      "name": "Login",
-      "url": "https://app.trigger.dev"
-    },
-    {
-      "name": "Sign up",
-      "url": "https://app.trigger.dev"
-    }
-  ],
   "topbarCtaButton": {
     "type": "github",
     "url": "https://github.com/triggerdotdev/trigger.dev"
