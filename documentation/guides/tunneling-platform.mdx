@@ -1,0 +1,22 @@
+---
+title: "Local platform"
+description: "Running the Trigger.dev platform locally requires tunneling to the internet."
+---
+
+Note this is only relevant to you if you are [running the platform locally](/documentation/guides/self-hosting).
+
+## How do I do it?
+
+There are a few ways to do this, but we recommend using [ngrok](https://ngrok.com/). It's free and easy to use.
+
+### 1. Download and setup ngrok
+
+You can download ngrok [here](https://ngrok.com/download).
+
+Follow the instructions on that page, but instead of port 80 use port 3010 (or whatever port you set the Trigger.dev platform to run on).
+
+This will give you a public URL.
+
+### 2. Use the public URL
+
+Use the public URL that ngrok gave you for the `LOGIN_ORIGIN` and `API_ORIGIN` environment variables for the docker container.

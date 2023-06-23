@@ -38,7 +38,17 @@
     },
     {
       "group": "Guides",
-      "pages": ["documentation/guides/self-hosting"]
+      "pages": [
+        "documentation/guides/self-hosting",
+        {
+          "group": "Tunneling",
+          "pages": [
+            "documentation/guides/tunneling",
+            "documentation/guides/tunneling-localhost",
+            "documentation/guides/tunneling-platform"
+          ]
+        }
+      ]
     },
     {
       "group": "Basics",
