@@ -2,8 +2,8 @@
 
 ## Install and initial setup
 
-1. Install the CLI globally on your machine
-   `npm i -g mintlify`
+Install the CLI globally on your machine
+`npm i -g mintlify`
 
 Then run:
 `mintlify install`
