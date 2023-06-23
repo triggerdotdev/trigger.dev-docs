@@ -85,3 +85,13 @@ Click into the Job and then open the "Test" tab. You should see this page:
 This Job doesn't have a payload schema (meaning it takes an empty object), so you can simple click the "Run test" button.
 
 Congratulations, you should get redirected so you can see your first Run!
+
+### Using the SDK
+
+You can also send an event programmatically using the `client.sendEvent` function.
+
+```typescript
+const result = await client.sendEvent({ name: "example.event", payload: {} });
+```
+
+The most likely scenario is that you will use this to send events from your api routes when user's interact with your app.
