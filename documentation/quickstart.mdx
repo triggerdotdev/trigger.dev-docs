@@ -19,27 +19,21 @@ The easiest way to get started it to use the CLI. It will add Trigger.dev to you
 
 In a new terminal (so you're running the Next.js site at the same time):
 
-<Tabs>
-<Tab title="Trigger.dev self-hosted">
-This assumes that you are running Trigger.dev on your machine on port 3010 using Docker and your Next.js app is on port 3000.
+<CodeGroup>
 
-```bash
-npx @trigger.dev/init -t http://localhost:3010 -u http://host.docker.internal:3000
-```
-
-</Tab>
-
-<Tab title="Trigger.dev Cloud">
-
-This is coming soon.
-
-```bash
+```bash npm
 npx @trigger.dev/init
 ```
 
-</Tab>
+```bash pnpm
+pnpm dlx @trigger.dev/init
+```
 
-</Tabs>
+```bash yarn
+yarn @trigger.dev/init
+```
+
+</CodeGroup>
 
 ## Your first job
 
