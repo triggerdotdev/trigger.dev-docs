@@ -3,17 +3,21 @@ title: "Quickstart"
 description: "Start creating Jobs in under 5 minutes"
 ---
 
-##
-
 ## Getting an API key
 
 Login to the Trigger.dev platform and go to the "Environments & API Keys" page in your project. Copy the `dev` API key.
 
 ![API Keys](/images/api-keys.png)
 
+## Run your Next.js site
+
+Make sure your Next.js site is running locally, we will connect to it to register your Jobs.
+
 ## Use the CLI
 
 The easiest way to get started it to use the CLI. It will add Trigger.dev to your existing Next.js project, setup a route and give you an example file.
+
+In a new terminal (so you're running the Next.js site at the same time):
 
 <Tabs>
 <Tab title="Trigger.dev self-hosted">
@@ -61,8 +65,23 @@ new Job(client, {
 });
 ```
 
-If you login to your Trigger.dev project you will see the Job in the "Jobs" section.
+If you login to your Trigger.dev project you will see this Job in the "Jobs" section:
+
+![Your first Job](/images/first-job.png)
 
 ## Triggering the Job
 
-You can Trigger the Job using the Test
+There are two way to trigger this Job.
+
+1. Use the "Test" functionality in the dashboard.
+2. Use the Trigger.dev API (either via our SDK or a web request)
+
+### Using the dashboard
+
+Click into the Job and then open the "Test" tab. You should see this page:
+
+![Test Job](/images/test-job.png)
+
+This Job doesn't have a payload schema (meaning it takes an empty object), so you can simple click the "Run test" button.
+
+Congratulations, you should get redirected so you can see your first Run!
