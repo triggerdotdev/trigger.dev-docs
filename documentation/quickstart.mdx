@@ -3,141 +3,66 @@ title: "Quickstart"
 description: "Start creating Jobs in under 5 minutes"
 ---
 
+##
+
+## Getting an API key
+
+Login to the Trigger.dev platform and go to the "Environments & API Keys" page in your project. Copy the `dev` API key.
+
+![API Keys](/images/api-keys.png)
+
 ## Use the CLI
 
-The basic packages needed are the SDK and the Next.js package.
-
-```bash
-npm install @trigger.dev/sdk@next @trigger.dev/nextjs
-```
-
-You'll also need to install any integrations you're going to work with
-
-```bash
-npm install @trigger.dev/github@next
-```
-
-## Setup your Client and API route
-
-The `Client` is used to run and register Jobs. The API route is how messages are received from the Trigger.dev service.
-
-The setup is slightly different depending if you're using the Next.js `pages` directory or `app` directory.
+The easiest way to get started it to use the CLI. It will add Trigger.dev to your existing Next.js project, setup a route and give you an example file.
 
 <Tabs>
-  <Tab title="App directory">
-If your routes are in the `app` directory, do the following:
-
-Create a file called in your app folder called `api/trigger.route.ts`
-
-```typescript app/api/trigger/route.ts
-import { Job, TriggerClient } from "@trigger.dev/sdk";
-import { createAppRoute } from "@trigger.dev/nextjs";
-
-//create the client
-export const client = new TriggerClient({
-  id: "nextjs-appdir",
-  url: process.env.VERCEL_URL,
-  apiKey: process.env.TRIGGER_API_KEY,
-  apiUrl: process.env.TRIGGER_API_URL,
-  logLevel: "debug",
-});
-
-//create the app route, pointing at this path
-export const { POST, dynamic } = createAppRoute(client, {
-  path: "/api/trigger",
-});
-```
-
-  </Tab>
-  <Tab title="Pages directory">
-
-If your routes are in the `pages` directory, do this:
-
-Create a file in your pages directory called `api/trigger.ts`
-
-```typescript pages/api/trigger.ts
-import { Job, TriggerClient } from "@trigger.dev/sdk";
-import { createPagesRoute } from "@trigger.dev/nextjs";
-
-//create the client
-export const client = new TriggerClient({
-  id: "nextjs-appdir",
-  url: process.env.VERCEL_URL,
-  apiKey: process.env.TRIGGER_API_KEY,
-  apiUrl: process.env.TRIGGER_API_URL,
-  logLevel: "debug",
-});
-
-//create the pages route, pointing at this path
-const { handler, config } = createPagesRoute(client, { path: "/api/trigger" });
-export { config };
-export default handler;
-```
-
-  </Tab>
-</Tabs>
-
-## Add environment variables
-
-You will need a Trigger.dev API key, which you can get by logging in to the Trigger.dev platform and going to the "Environments & API Keys" page.
-
-Create a `.env.local` file if it doesn't exist. Add the following variables to it:
-
-```bash .env.local
-# Replace the below with your Trigger.dev Dev API key
-TRIGGER_API_KEY=tr_dev_abcdefghijkl
-
-# Replace the below with the local URL of your Next.js app
-VERCEL_URL=http://localhost:3000
-
-# You only need the API URL if you're self-hosting the Trigger.dev platform
-# TRIGGER_API_URL=http://localhost:3010
-```
-
-## Creating your first job
-
-We're going to create a simple Job that listens for GitHub issues being opened and logs.
-
-Install the GitHub integration package:
+<Tab title="Trigger.dev self-hosted">
+This assumes that you are running Trigger.dev on your machine on port 3010 using Docker and your Next.js app is on port 3000.
 
 ```bash
-npm install @trigger.dev/github@next
+npx @trigger.dev/init -t http://localhost:3010 -u http://host.docker.internal:3000
 ```
 
-For now we'll add the Job to the same file as your route.
+</Tab>
 
-<Note>
-  When you move your Jobs to another file you need to import them somewhere that
-  is run. We recommended importing them at the top of your route file that we
-  created above by doing `import "@/jobs/myjob.ts`
-</Note>
+<Tab title="Trigger.dev Cloud">
 
-```typescript the file you created above
-//add this to the top
-import { Github, events } from "@trigger.dev/github";
+This is coming soon.
 
-//add this to the bottom
+```bash
+npx @trigger.dev/init
+```
 
-//create GitHub client
-const github = new Github({
-  id: "github",
-  //todo you will need to add GITHUB_TOKEN to your .env.local file with a valid GitHub token
-  token: process.env.GITHUB_TOKEN,
-});
+</Tab>
 
-//your first job, subscribes to GitHub issues opened
+</Tabs>
+
+## Your first job
+
+The CLI created a simple Job for you. There will be a new file either `api/trigger/route.ts` or `pages/api/trigger.ts`.
+
+In there is this Job:
+
+```typescript
 new Job(client, {
-  id: "alert-on-new-github-issues",
-  name: "Alert on new GitHub issues",
-  version: "0.1.0",
-  trigger: github.triggers.repo({
-    event: events.onIssueOpened,
-    owner: "triggerdotdev",
-    repo: "empty",
+  id: "example-job",
+  name: "Example Job",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "example.event",
   }),
   run: async (payload, io, ctx) => {
-    await io.wait("wait", 5); // wait for 5 seconds
-    await io.logger.info("This is a simple log info message");
+    await io.logger.info("Hello world!", { payload });
+
+    return {
+      message: "Hello world!",
+    };
   },
 });
 ```
+
+If you login to your Trigger.dev project you will see the Job in the "Jobs" section.
+
+## Triggering the Job
+
+You can Trigger the Job using the Test
