@@ -25,11 +25,11 @@ The setup is slightly different depending if you're using the Next.js `pages` di
 
 <Tabs>
   <Tab title="App directory">
-If in your `next.config.js` you have `appDir: true` you're using the `app` directory.
+If your routes are in the `app` directory, do the following:
 
-Create a file called `src/app/api/trigger/route.ts`
+Create a file called in your app folder called `api/trigger.route.ts`
 
-```typescript src/app/api/trigger/route.ts
+```typescript app/api/trigger/route.ts
 import { Job, TriggerClient } from "@trigger.dev/sdk";
 import { createAppRoute } from "@trigger.dev/nextjs";
 import { events } from "@trigger.dev/github";
@@ -68,11 +68,11 @@ new Job(client, {
   </Tab>
   <Tab title="Pages directory">
 
-If in your `next.config.js` you do NOT have `appDir: true` you're using the `pages` directory.
+If your routes are in the `pages` directory, do this:
 
-Create a file called `src/pages/api/trigger.ts`
+Create a file in your pages directory called `api/trigger.ts`
 
-```typescript src/pages/api/trigger.ts
+```typescript pages/api/trigger.ts
 import { Job, TriggerClient } from "@trigger.dev/sdk";
 import { createPagesRoute } from "@trigger.dev/nextjs";
 import { events } from "@trigger.dev/github";
