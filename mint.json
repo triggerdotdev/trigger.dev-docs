@@ -37,8 +37,8 @@
       "pages": ["documentation/introduction", "documentation/quickstart"]
     },
     {
-      "group": "Self hosting",
-      "pages": ["documentation/self-hosting"]
+      "group": "Guides",
+      "pages": ["documentation/guides/self-hosting"]
     },
     {
       "group": "Basics",
