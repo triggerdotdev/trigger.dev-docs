@@ -56,8 +56,14 @@
         "documentation/concepts/what-is-triggerdotdev",
         "documentation/concepts/projects",
         "documentation/concepts/client-handlers",
-        "documentation/concepts/jobs-runs-tasks",
-        "documentation/concepts/environments-apikeys",
+        {
+          "group": "Jobs, Runs & Tasks",
+          "pages": [
+            "documentation/concepts/jobs",
+            "documentation/concepts/runs",
+            "documentation/concepts/tasks"
+          ]
+        },
         {
           "group": "Triggers",
           "pages": [
