@@ -21,10 +21,20 @@
     "default": "dark",
     "isHidden": true
   },
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
   "topbarCtaButton": {
     "type": "github",
     "url": "https://github.com/triggerdotdev/trigger.dev"
   },
+  "topbarLinks": [
+    {
+      "name": "Community",
+      "url": "https://discord.gg/kA47vcd8P6"
+    }
+  ],
   "tabs": [
     {
       "name": "Integrations",
@@ -33,13 +43,16 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": ["documentation/introduction", "documentation/quickstart"]
+      "group": "Getting Started",
+      "pages": [
+        "documentation/introduction",
+        "documentation/quickstart",
+        "documentation/what-is-triggerdotdev"
+      ]
     },
     {
       "group": "Guides",
       "pages": [
-        "documentation/guides/self-hosting",
         {
           "group": "Tunneling",
           "pages": [
@@ -47,12 +60,21 @@
             "documentation/guides/tunneling-localhost",
             "documentation/guides/tunneling-platform"
           ]
-        }
+        },
+        "documentation/guides/self-hosting"
       ]
     },
     {
+      "group": "Concepts",
+      "pages": ["documentation/guides/self-hosting"]
+    },
+    {
+      "group": "SDK",
+      "pages": ["documentation/guides/self-hosting"]
+    },
+    {
       "group": "Basics",
-      "pages": ["integrations/introduction"]
+      "pages": ["integrations/introduction", "integrations/create"]
     },
     {
       "group": "Integrations",
