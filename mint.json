@@ -65,6 +65,14 @@
       ]
     },
     {
+      "group": "Triggers",
+      "pages": [
+        "triggers/webhooks",
+        "triggers/custom-events",
+        "triggers/scheduled"
+      ]
+    },
+    {
       "group": "Concepts",
       "pages": ["documentation/guides/self-hosting"]
     },
@@ -90,6 +98,10 @@
         {
           "group": "OpenAI",
           "pages": ["integrations/apis/openai"]
+        },
+        {
+          "group": "Slack",
+          "pages": ["integrations/apis/slack"]
         }
       ]
     }

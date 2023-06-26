@@ -1,0 +1,44 @@
+---
+title: Introduction
+---
+
+## Authentication
+
+Slack supports OAuth
+
+```ts
+import { Slack } from "@trigger.dev/slack";
+
+const slack = new Slack({
+  id: "slack",
+});
+```
+
+## Example
+
+```ts
+new Job(client, {
+  id: "slack-test",
+  name: "Slack test",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "slack.test",
+    schema: z.object({}),
+  }),
+  integrations: {
+    slack,
+  },
+  run: async (payload, io, ctx) => {
+    const response = await io.slack.postMessage("post message", {
+      channel: "C04GWUTDC3W",
+      text: "My first Slack message",
+    });
+  },
+});
+```
+
+## Tasks
+
+| Function Name | Description                 |
+| ------------- | --------------------------- |
+| `postMessage` | Post a message to a channel |

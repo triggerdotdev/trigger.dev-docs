@@ -12,6 +12,16 @@ An integration is a package you install that makes it easy to work with a specif
 - Provides a set of Triggers to listen for events from the API
 - Allows you to use the full underlying authenticated SDK client directly
 
+//todo Table of integrations
+
+## Integrations
+
+| API                                 | Description                                                 | Webhooks | Tasks |
+| ----------------------------------- | ----------------------------------------------------------- | -------- | ----- |
+| [GitHub](/integrations/apis/github) | Interact with GitHub                                        | ✔️       | ✔️    |
+| [OpenAI](/integrations/apis/openai) | Generate text and images. Including longer than 30s prompts | N/A      | ✔️    |
+| [Slack](/integrations/apis/slack)   | Send Slack messages                                         | TBD      | ✔️    |
+
 ## An example
 
 This job sends Slack messages when a new GitHub issue is opened on the `triggerdotdev/trigger.dev` repo.
