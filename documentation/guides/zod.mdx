@@ -8,21 +8,17 @@ description: "TypeScript-first schema validation with static type inference"
 
 Zod is a fantastic utility package by [@colinhacks](https://twitter.com/colinhacks) that allows for defining runtime schema validation and type-safety.
 
-We use it [extensively](https://github.com/search?q=repo%3Atriggerdotdev%2Ftrigger.dev+%22zod%22%3B&type=code) internally at Trigger.dev to ensure we never trigger your workflows with invalid data (and more).
+We use it [extensively](https://github.com/search?q=repo%3Atriggerdotdev%2Ftrigger.dev+%22zod%22%3B&type=code) internally at Trigger.dev.
 
-But there are a few places where we ask you to provide us with a Zod schema, for example when defining a [Custom Event Trigger](/triggers/custom-events):
+But there are a few places where we ask you to provide us with a Zod schema, for example when defining your own [events](/documentation/concepts/triggers/events):
 
 ```ts
-import { Trigger, customEvent } from "@trigger.dev/sdk";
-import * as slack from "@trigger.dev/slack";
-import { z } from "zod";
-
-//this workflow will run when a "user.created" event is sent
-new Trigger({
-  id: "zod",
-  name: "Zod custom event",
-  //this is the custom event subscription
-  on: customEvent({
+new Job(client, {
+  id: "new-user",
+  name: "New user",
+  version: "0.1.0",
+  //the eventTrigger uses zod to define the schema
+  trigger: eventTrigger({
     name: "user.created",
     schema: z.object({
       name: z.string(),
@@ -31,10 +27,10 @@ new Trigger({
     }),
   }),
   //this function is run when the custom event is received
-  run: async (event, ctx) => {
-    console.log(event); // Has name, email, paidPlan
+  run: async (payload, io, ctx) => {
+    //do stuff
   },
-}).listen();
+});
 ```
 
 So it will help to know a little about Zod and how to use it. We definitely recommend the well written [Zod README](https://github.com/colinhacks/zod#readme) but we've included a short primer below.
