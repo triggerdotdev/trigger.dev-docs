@@ -13,6 +13,12 @@ Login to the Trigger.dev platform and go to the "Environments & API Keys" page i
 
 Make sure your Next.js site is running locally, we will connect to it to register your Jobs.
 
+## Setup tunneling
+
+You'll need to use a reverse tunneling service to expose your local Next.js dev server to the internet. This allows Trigger.dev to make HTTP requests to your local machine. We recommend using [ngrok](https://ngrok.com/):
+
+<Snippet file="ngrok-steps.mdx" />
+
 ## Use the CLI
 
 The easiest way to get started it to use the CLI. It will add Trigger.dev to your existing Next.js project, setup a route and give you an example file.
@@ -22,18 +28,24 @@ In a new terminal (so you're running the Next.js site at the same time):
 <CodeGroup>
 
 ```bash npm
-npx @trigger.dev/init
+npx @trigger.dev/init@latest
 ```
 
 ```bash pnpm
-pnpm dlx @trigger.dev/init
+pnpm dlx @trigger.dev/init@latest
 ```
 
 ```bash yarn
-yarn @trigger.dev/init
+yarn @trigger.dev/init@latest
 ```
 
 </CodeGroup>
+
+It will ask you a few questions
+
+1. Are you using the Trigger.dev cloud or self-hosted? You're probably using the cloud.
+2. Enter your development API key. Enter the key you copied earlier
+3. What's the URL of your Next.js project? Use the ngrok forwarding URL you just copied
 
 ## Your first job
 
