@@ -8,12 +8,12 @@
   },
   "favicon": "/images/favicon.png",
   "colors": {
-    "primary": "#0fd122",
-    "light": "#41FF54",
-    "dark": "#632CCC",
+    "primary": "#a5b4fc",
+    "light": "#a5b4fc",
+    "dark": "#a5b4fc",
     "anchors": {
-      "from": "#069613",
-      "to": "#0fd122"
+      "from": "#fff",
+      "to": "#eee"
     }
   },
   "backgroundImage": "/images/docs-background.png",
