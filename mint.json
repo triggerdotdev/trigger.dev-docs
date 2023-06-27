@@ -43,6 +43,10 @@
     {
       "name": "SDK Reference",
       "url": "sdk"
+    },
+    {
+      "name": "Examples",
+      "url": "examples"
     }
   ],
   "navigation": [
@@ -73,6 +77,7 @@
             "documentation/concepts/triggers/scheduled"
           ]
         },
+        "documentation/concepts/delays",
         "documentation/concepts/integrations"
       ]
     },
