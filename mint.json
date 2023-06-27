@@ -74,12 +74,14 @@
             "documentation/concepts/triggers/introduction",
             "documentation/concepts/triggers/webhooks",
             "documentation/concepts/triggers/events",
-            "documentation/concepts/triggers/scheduled"
+            "documentation/concepts/triggers/scheduled",
+            "documentation/concepts/triggers/dynamic"
           ]
         },
-        "documentation/concepts/resumability-idempotency",
+        "documentation/concepts/resumability",
         "documentation/concepts/delays",
-        "documentation/concepts/integrations"
+        "documentation/concepts/integrations",
+        "documentation/concepts/connect"
       ]
     },
     {
@@ -128,23 +130,6 @@
     },
     {
       "group": "Overview",
-      "pages": [
-        "sdk/introduction",
-        "sdk/client",
-        "sdk/job",
-        "sdk/io",
-        "sdk/context",
-        "eventTrigger",
-        "sdk/dynamic-trigger",
-        "cronTrigger",
-        "intervalTrigger",
-        "sdk/dynamic-schedule",
-        "isTriggerError",
-        "redactString"
-      ]
-    },
-    {
-      "group": "Basics",
       "pages": ["integrations/introduction", "integrations/create"]
     },
     {
@@ -166,6 +151,23 @@
           "group": "Slack",
           "pages": ["integrations/apis/slack"]
         }
+      ]
+    },
+    {
+      "group": "Overview",
+      "pages": [
+        "sdk/introduction",
+        "sdk/client",
+        "sdk/job",
+        "sdk/io",
+        "sdk/context",
+        "eventTrigger",
+        "sdk/dynamic-trigger",
+        "cronTrigger",
+        "intervalTrigger",
+        "sdk/dynamic-schedule",
+        "isTriggerError",
+        "redactString"
       ]
     }
   ],
