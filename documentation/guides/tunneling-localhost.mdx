@@ -9,14 +9,10 @@ You are developing locally and need to connect to Trigger.dev (cloud or self-hos
 
 There are a few ways to do this, but we recommend using [ngrok](https://ngrok.com/). It's free and easy to use.
 
-### 1. Download and setup ngrok
+### Start ngrok
 
-You can download ngrok [here](https://ngrok.com/download).
+<Snippet file="ngrok-steps.mdx" />
 
-Follow the instructions on that page, but instead of port 80 use port 3000 (or wherever your Next.js app is running).
+### Use the forwarding URL
 
-This will give you a public URL that you can then use for the `VERCEL_URL` environment variable.
-
-### 2. Use the public URL
-
-Use the public URL that ngrok gave you for the `VERCEL_URL` environment variable.
+Use the forwarding URL that ngrok gave you for the `VERCEL_URL` environment variable.
