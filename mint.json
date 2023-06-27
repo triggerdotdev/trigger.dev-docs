@@ -88,7 +88,7 @@
       "group": "Guides",
       "pages": [
         {
-          "group": "Using the GUI",
+          "group": "Using the Dashboard",
           "pages": [
             "documentation/guides/managing-jobs",
             "documentation/guides/viewing-runs",
