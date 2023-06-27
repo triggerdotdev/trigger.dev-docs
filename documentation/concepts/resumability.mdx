@@ -1,14 +1,14 @@
 ---
-title: Resumability & Idempotency
-description: "Runs are resumable by returning Task stored data, and by utilizing Idempotency."
+title: Resumability
+description: "Runs are resumable by returning Task stored data"
 ---
 
-[Runs](documentation/concepts/runs) can exceed the maximum timeout on serverless platforms and can survive server restarts.
+[Runs](/documentation/concepts/runs) can exceed the maximum timeout on serverless platforms and can survive server restarts.
 
 ## How does this work?
 
 1. When a Run is created, it is given a unique ID. This ID is used to identify the Run.
-2. [Tasks](documentation/concepts/tasks) have a `key` which is a string and is the first parameter. This should be stable and unique inside that `run` function.
+2. [Tasks](/documentation/concepts/tasks) have a `key` which is a string and is the first parameter. This should be stable and unique inside that `run` function.
 3. When a Task is completed, its output is stored.
 4. If a Run exceeds the timeout, or your server restarts, the Run will be "replayed".
 5. The second+ time it is run, Tasks that have already successfully completed will immediately return their first output. The code inside them won't re-run.

@@ -61,7 +61,7 @@ new Job(client, {
 
 Tasks are a powerful concept that gives you a lot of benefits:
 
-- **Resumability** – Runs can exceed the maximum timeout on serverless platforms. If a Run exceeds this limit, it will be re-run. When it is re-run, any completed Tasks return their original output and they aren't re-run. Read more about [Resumability](/documentation/concepts/resumability-idempotency).
+- **Resumability** – Runs can exceed the maximum timeout on serverless platforms. If a Run exceeds this limit, it will be re-run. When it is re-run, any completed Tasks return their original output and they aren't re-run. Read more about [Resumability](/documentation/concepts/resumability).
 - **Retryable** – If a Task fails, it will be retried. You can configure how (or if) a Task is retried. Full details in the [io SDK reference](/sdk/io).
 - **Logging** – Tasks are logged, so you can see what happened in a Run. Find out more about [viewing runs](/documentation/guides/viewing-runs).
 
@@ -77,9 +77,9 @@ The first param of all Tasks is a `key`. This is a unique identifier for the Tas
 
 <CardGroup cols={2}>
   <Card
-    title="Resumability and Idempotency"
+    title="Resumability"
     icon="clock"
-    href="/documentation/concepts/resumability-idempotency"
+    href="/documentation/concepts/resumability"
   >
     Runs can be very long-running. Learn how we handle this.
   </Card>
