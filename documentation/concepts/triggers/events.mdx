@@ -4,7 +4,7 @@ sidebarTitle: "Events"
 description: "Event triggers allow you to run Jobs from your own code (or your other Jobs)"
 ---
 
-[Send an event](/sdk/send-event) and any Jobs that subscribe to that event will get triggered.
+> Send an event and any Jobs that subscribe to that event will get triggered.
 
 ## Name and Schemas
 
@@ -55,12 +55,6 @@ new Job(client, {
     return response.message;
   },
 });
-
-//somewhere else in your code, can even be on another server
-await client.sendEvent({
-  name: "user.created",
-  payload: { name: "John Doe", email: "john@doe.com", paidPlan: true },
-});
 ```
 
 <Note>
@@ -68,6 +62,47 @@ await client.sendEvent({
   useful if you want to send an event to multiple different services or if you
   want to keep each Job small and simple.
 </Note>
+
+## Sending events
+
+There are three ways of sending an event that will Trigger a Job.
+
+### 1. From your own code
+
+You can use `client.sendEvent()` to send an event from your own code. [View the SDK reference](/sdk/client).
+
+```ts
+//somewhere in your code, can even be on another server
+await client.sendEvent({
+  name: "user.created",
+  payload: { name: "John Doe", email: "john@doe.com", paidPlan: true },
+});
+```
+
+### 2. From another Job
+
+You can use `io.sendEvent()` to send events from inside a Job, to trigger another. [View the SDK reference](/sdk/io).
+
+```ts
+new Job(client, {
+  id: "event-1",
+  name: "Run when the foo.bar event happens",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "foo.bar",
+    schema: z.object({
+      url: z.string(),
+    }),
+  }),
+  run: async (payload, io, ctx) => {
+    //send an event using `io`
+    await io.sendEvent("send event", {
+      name: "user.created",
+      payload: { name: "Rick Astley", email: "rick.astley@gmail.com" },
+    });
+  },
+});
+```
 
 ## Event filters
 
