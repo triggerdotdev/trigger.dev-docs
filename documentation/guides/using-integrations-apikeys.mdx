@@ -1,0 +1,29 @@
+---
+title: "API Keys and Personal Access Tokens"
+description: "Lots of APIs use API Keys or Personal Access Tokens to authenticate. This guide will show you how to use them."
+---
+
+## 1. Create an integration client
+
+```ts
+//1. Import the integration packages you want to use
+import { Github } from "@trigger.dev/github";
+import { OpenAI } from "@trigger.dev/openai";
+
+//2. Create a new instance of the integration client
+// GitHub uses personal access tokens so the param is called `token`
+const github = new Github({
+  id: "github",
+  token: process.env.GITHUB_TOKEN,
+});
+
+// OpenAI uses API keys so the param is called `apiKey`
+const openai = new OpenAI({
+  id: "openai",
+  apiKey: process.env.OPENAI_API_KEY,
+});
+```
+
+Note that we used `process.env.GITHUB_TOKEN` and `process.env.OPENAI_API_KEY`. They're environment variables, which are a way of not putting secret values directly in your code.
+
+For Next.js, local environment variables usually live in a `.env.local` file in the root of the project.

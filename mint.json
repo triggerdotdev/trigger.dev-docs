@@ -112,8 +112,15 @@
             "documentation/guides/tunneling-platform"
           ]
         },
-        "documentation/guides/environments-endpoints",
-        "documentation/guides/connecting-integrations",
+        {
+          "group": "Using integrations",
+          "pages": [
+            "documentation/guides/using-integrations",
+            "documentation/guides/using-integrations-apikeys",
+            "documentation/guides/using-integrations-oauth"
+          ]
+        },
+
         "documentation/guides/deployment",
         "documentation/guides/zod",
         "documentation/guides/self-hosting",
