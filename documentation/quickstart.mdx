@@ -13,6 +13,28 @@ Login to the Trigger.dev platform and go to the "Environments & API Keys" page i
 
 Make sure your Next.js site is running locally, we will connect to it to register your Jobs.
 
+<CodeGroup>
+
+```bash npm
+npm run dev
+```
+
+```bash pnpm
+pnpm run dev
+```
+
+```bash yarn
+yarn run dev
+```
+
+</CodeGroup>
+
+<Note>
+
+You must leave this running for the rest of the steps.
+
+</Note>
+
 ## Setup tunneling
 
 You'll need to use a reverse tunneling service to expose your local Next.js dev server to the internet. This allows Trigger.dev to make HTTP requests to your local machine. We recommend using [ngrok](https://ngrok.com/):
