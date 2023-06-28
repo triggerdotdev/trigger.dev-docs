@@ -27,3 +27,47 @@ const openai = new OpenAI({
 Note that we used `process.env.GITHUB_TOKEN` and `process.env.OPENAI_API_KEY`. They're environment variables, which are a way of not putting secret values directly in your code.
 
 For Next.js, local environment variables usually live in a `.env.local` file in the root of the project.
+
+## 2. Use the integration client
+
+There are two way to use integrations in a Job:
+
+- You can perform Tasks in the `run` function, by passing the integration client into the `integrations` object.
+- You can use webhooks to Trigger a Job.
+
+This example automatically assigns "matt-aitken" to any new issue in the `trigger.dev` repo (lucky him).
+
+```ts
+new Job(client, {
+  id: "assign-on-issue-opened",
+  name: "Assign on Issue Opened",
+  version: "0.1.0",
+  //1. If you want to use the integration in the run function, add it here
+  integrations: { github },
+  //2. If the integration supports webhooks, you can use them here
+  trigger: github.triggers.repo({
+    event: events.onIssueOpened,
+    owner: "triggerdotdev",
+    repo: "trigger.dev",
+  }),
+  run: async (payload, io, ctx) => {
+    //3. Because we add `github` to integrations, it comes through to `io.github` here
+    const assignee = await io.github.addIssueAssignees("add assignee", {
+      owner: payload.repository.owner.login,
+      repo: payload.repository.name,
+      issueNumber: payload.issue.number,
+      assignees: ["matt-aitken"],
+    });
+
+    return assignee;
+  },
+});
+```
+
+## References
+
+<CardGroup cols={2}>
+  <Card title="View integrations" icon="grid-2" href="/integrations">
+    Trigger.dev integrates with a wide range of services.
+  </Card>
+</CardGroup>
