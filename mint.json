@@ -88,6 +88,14 @@
       "group": "Guides",
       "pages": [
         {
+          "group": "Platforms",
+          "pages": [
+            "documentation/guides/platforms/nextjs",
+            "documentation/guides/platforms/express"
+          ]
+        },
+        "/documentation/guides/create-a-job",
+        {
           "group": "Using the Dashboard",
           "pages": [
             "documentation/guides/managing-jobs",
@@ -96,13 +104,6 @@
             "documentation/guides/integrations",
             "documentation/guides/endpoints",
             "documentation/guides/rerunning"
-          ]
-        },
-        {
-          "group": "Platforms",
-          "pages": [
-            "documentation/guides/platforms/nextjs",
-            "documentation/guides/platforms/express"
           ]
         },
         {
