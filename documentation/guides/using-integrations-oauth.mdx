@@ -59,7 +59,21 @@ new Job(client, {
 
 ## 3. Creating the OAuth connection in the dashboard
 
-You need to setup the OAuth client in the dashboard. You will use the `id` that you specified in your code to associate them.
+Now you need to setup the OAuth client in the dashboard. You will use the `id` that you specified in your code to associate them.
+
+1. Go to the "Integrations page" in your dashboard. Click the integration you want to setup.
+   ![Click the integration](/images/integrations-click-github.png)
+
+2. Select OAuth as the authentication type.
+   ![Select OAuth](/images/oauth-setup-1.png)
+
+3. Select "Developer" as the user type.
+   ![Select Developer](/images/oauth-setup-2.png)
+
+4. Enter the `id` that you specified in your code. Select the scopes that you want and enter a unique title.
+   ![Enter the id](/images/oauth-setup-3.png)
+
+5. Click the Connect button, it will take you through the OAuth flow.
 
 ## 4. Viewing your connection clients
 
@@ -67,7 +81,7 @@ You need to setup the OAuth client in the dashboard. You will use the `id` that 
 
 <Snippet file="integration-list.mdx" />
 
-### Connected API Key integration detail page
+### Connected OAuth integration detail page
 
 ![An OAuth integration](/images/integration-oauth.png)
 
