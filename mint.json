@@ -114,6 +114,7 @@
             "documentation/guides/tunneling-platform"
           ]
         },
+        "documentation/guides/connecting-integrations",
         "documentation/guides/deployment",
         "documentation/guides/zod",
         "documentation/guides/self-hosting",
