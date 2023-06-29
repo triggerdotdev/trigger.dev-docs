@@ -182,7 +182,10 @@
           "pages": [
             "sdk/triggerclient/overview",
             "sdk/triggerclient/constructor",
-            "sdk/triggerclient/instancemethods"
+            {
+              "group": "Instance methods",
+              "pages": ["sdk/triggerclient/instancemethods/attach"]
+            }
           ]
         },
         "sdk/job",
