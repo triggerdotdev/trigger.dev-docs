@@ -24,7 +24,7 @@ There are two ways to use webhooks with Trigger.dev:
 
 ```ts Github
 import { Job } from "@trigger.dev/sdk";
-import { Github } from "@trigger.dev/github";
+import { Github, events } from "@trigger.dev/github";
 
 //GitHub integration with API Key (it supports OAuth too)
 const github = new Github({
