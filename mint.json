@@ -94,7 +94,7 @@
             "documentation/guides/platforms/express"
           ]
         },
-        "/documentation/guides/create-a-job",
+        "documentation/guides/create-a-job",
         {
           "group": "Using the Dashboard",
           "pages": [
