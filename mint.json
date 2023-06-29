@@ -189,6 +189,10 @@
         "isTriggerError",
         "redactString"
       ]
+    },
+    {
+      "group": "Overview",
+      "pages": ["examples/introduction"]
     }
   ],
   "footerSocials": {
