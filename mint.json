@@ -59,7 +59,7 @@
       "pages": [
         "documentation/concepts/what-is-triggerdotdev",
         "documentation/concepts/projects",
-        "documentation/concepts/client-handlers",
+        "documentation/concepts/client-adaptors",
         {
           "group": "Jobs, Runs & Tasks",
           "pages": [
