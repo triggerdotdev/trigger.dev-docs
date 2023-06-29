@@ -1,0 +1,27 @@
+---
+title: "Automatic endpoint refreshing"
+description: "Use our webhook to automatically tell us when you deploy"
+---
+
+## In the dashboard
+
+1. Go to the "Environments & API Keys" page in your Trigger.dev dashboard
+   ![Go to the Environments & API Keys page ](/images/environments-link.png)
+2. Select your endpoint row in the table of endpoints.
+   ![Select your endpoint](/images/endpoint-manual-refresh-1.png)
+3. There is a webhook URL in the "Automatic Refresh" section. Copy this URL.
+   ![Copy the webhook URL](/images/endpoint-automatic-refresh.png)
+
+## How to use the webhook URL
+
+You can either do a `GET` request or a `POST` request to the webhook URL.
+
+### `GET` request
+
+Any `GET` request to the webhook URL will cause a refresh of the Jobs for that endpoint.
+
+### `POST` request
+
+You can also send a `POST` request to the webhook URL. The body of the request should be text
+
+You need to make a `POST` request to the webhook URL.

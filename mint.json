@@ -81,7 +81,8 @@
         "documentation/concepts/resumability",
         "documentation/concepts/delays",
         "documentation/concepts/integrations",
-        "documentation/concepts/connect"
+        "documentation/concepts/connect",
+        "documentation/concepts/environments-endpoints"
       ]
     },
     {
@@ -120,8 +121,15 @@
             "documentation/guides/using-integrations-oauth"
           ]
         },
-
-        "documentation/guides/deployment",
+        {
+          "group": "Deployment",
+          "pages": [
+            "documentation/guides/deployment",
+            "documentation/guides/deployment-setup",
+            "documentation/guides/deployment-manual",
+            "documentation/guides/deployment-automatic"
+          ]
+        },
         "documentation/guides/zod",
         "documentation/guides/self-hosting",
         "documentation/guides/contributing"
