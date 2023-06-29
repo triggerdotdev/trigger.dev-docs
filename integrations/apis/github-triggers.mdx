@@ -22,11 +22,18 @@ title: Triggers
 ## Usage
 
 ```ts
+import { Github, events } from "@trigger.dev/github";
+
+const github = new Github({
+  id: "github",
+  token: process.env.GITHUB_TOKEN,
+});
+
 new Job(client, {
   id: "github-integration-on-issue",
   name: "GitHub Integration - On Issue",
   version: "0.1.0",
-  trigger: githubApiKey.triggers.repo({
+  trigger: github.triggers.repo({
     event: events.onIssue,
     owner: "triggerdotdev",
     repo: "empty",
