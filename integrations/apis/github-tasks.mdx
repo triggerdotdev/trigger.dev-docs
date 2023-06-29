@@ -27,8 +27,8 @@ new Job(client, {
   id: "github-integration-on-issue-opened",
   name: "GitHub Integration - On Issue Opened",
   version: "0.1.0",
-  integrations: { github: githubApiKey },
-  trigger: githubApiKey.triggers.repo({
+  integrations: { github },
+  trigger: github.triggers.repo({
     event: events.onIssueOpened,
     owner: "triggerdotdev",
     repo: "empty",
