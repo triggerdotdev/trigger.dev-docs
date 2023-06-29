@@ -177,7 +177,14 @@
       "group": "Overview",
       "pages": [
         "sdk/introduction",
-        "sdk/client",
+        {
+          "group": "TriggerClient",
+          "pages": [
+            "sdk/triggerclient/overview",
+            "sdk/triggerclient/constructor",
+            "sdk/triggerclient/instancemethods"
+          ]
+        },
         "sdk/job",
         "sdk/io",
         "sdk/context",

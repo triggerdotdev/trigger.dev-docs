@@ -1,0 +1,24 @@
+---
+title: "Overview"
+description: "TriggerClient is used to create a client that connects to the Trigger.dev platform"
+---
+
+A [TriggerClient](/documentation/concepts/client-adaptors) is used to connect to a specific [Project](/documentation/concepts/projects) by using an [API Key](/documentation/concepts/environments-apikeys).
+
+```ts Example
+export const client = new TriggerClient({
+  id: "my-webapp",
+  apiKey: process.env.TRIGGER_API_KEY,
+  logLevel: "debug",
+});
+```
+
+## Constructor
+
+#### [TriggerClient()](/sdk/triggerclient/constructor)
+
+Creates a new TriggerClient object.
+
+## Instance properties
+
+## Instance methods
