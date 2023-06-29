@@ -156,6 +156,10 @@
           "pages": ["integrations/apis/openai"]
         },
         {
+          "group": "Resend",
+          "pages": ["integrations/apis/resend"]
+        },
+        {
           "group": "Slack",
           "pages": ["integrations/apis/slack"]
         }
