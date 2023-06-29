@@ -27,7 +27,19 @@ You can use this webhook URL in your Vercel dashboard, so when a deployment succ
 4. You're done! Whenever a deploy succeeds, Vercel will tell us to refresh your endpoint.
    ![You're done!](/images/deploy-vercel-4.png)
 
-### GitHub action
+### GitHub Actions
+
+You can add a step to the GitHub Action that deploys your app.
+
+```yaml .github/workflows/release.yml
+- name: 🚀 Refresh Trigger.dev Jobs
+   env:
+      DEPLOY_TEST_HOOK: ${{ secrets.TRIGGER_ENDPOINT_HOOK }}
+   run: |
+      curl -X POST $TRIGGER_ENDPOINT_HOOK
+```
+
+You will need to [setup the `TRIGGER_ENDPOINT_HOOK` secret in your GitHub repo](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository). Set it to the webhook URL from the endpoint panel.
 
 ### Do an HTTP request yourself
 
