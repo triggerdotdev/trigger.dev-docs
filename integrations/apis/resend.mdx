@@ -17,7 +17,12 @@ const resend = new Resend({
 
 ## Example
 
+In this example we use [Zod](https://zod.dev/?id=introduction), a TypeScript-first schema declaration and validation library.
+
 ```ts
+import { Resend } from "@trigger.dev/resend";
+import { z } from "zod";
+
 new Job(client, {
   id: "send-resend-email",
   name: "Send Resend Email",
