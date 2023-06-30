@@ -3,19 +3,63 @@ title: "Quick Start"
 description: "Start creating Jobs in under 5 minutes"
 ---
 
-## Getting an API key
+## Create a Trigger.dev account
 
-Login to the Trigger.dev platform and go to the "Environments & API Keys" page in your project. Copy the `dev` API key.
+You can either
 
-![API Keys](/images/api-keys.png)
+- Use the [Trigger.dev Cloud service](https://trigger.dev) (we're currently in private beta).
+- Or [self-host](/documentation/guides/self-hosting) the service.
+
+### Create your first project
+
+Once you've created an account, follow the steps to:
+
+1. Complete your account details.
+2. Create your first Organization and Project.
+
+### Getting an API key
+
+1. Go to the "Environments & API Keys" page in your project.
+   ![Go to the Environments & API Keys page ](/images/environments-link.png)
+
+2. Copy the `DEV` API key.
+   ![API Keys](/images/api-keys.png)
+
+## Run the CLI `init` command
+
+At this point you should have your Next.js site running.
+
+The easiest way to get started it to use the CLI. It will add Trigger.dev to your existing Next.js project, setup a route and give you an example file.
+
+In a terminal window run:
+
+<CodeGroup>
+
+```bash npm
+npx @trigger.dev/cli@latest init
+```
+
+```bash pnpm
+pnpm dlx @trigger.dev/cli@latest init
+```
+
+```bash yarn
+yarn @trigger.dev/cli@latest init
+```
+
+</CodeGroup>
+
+It will ask you a few questions
+
+1. Are you using the [Trigger.dev Cloud](https://trigger.dev) or [self-hosting](/documentation/guides/self-hosting)? You're probably using the cloud.
+2. Enter your development API key. Enter the key you copied earlier.
+3. Enter a unique ID for your endpoint (you can just use the default by hitting enter)
 
 ## Run your Next.js site
 
 Make sure your Next.js site is running locally, we will connect to it to register your Jobs.
 
-<Note>
-You must leave this running for the rest of the steps.
-</Note>
+<Warning>You must leave this running for the rest of the steps.</Warning>
 
 <CodeGroup>
 
@@ -33,50 +77,38 @@ yarn run dev
 
 </CodeGroup>
 
-## Setup tunneling
+## Run the CLI `dev` command
 
-You'll need to use a reverse tunneling service to expose your local Next.js dev server to the internet. This allows Trigger.dev to make HTTP requests to your local machine. We recommend using [ngrok](https://ngrok.com/):
+The CLI `dev` command allows the Trigger.dev service to send messages to your Next.js site. This is required for registering Jobs, trigger them and running tasks. To achieve this it creates a tunnel (using [ngrok](https://ngrok.com/)) so Trigger.dev can send messages to your machine.
 
-<Snippet file="ngrok-steps.mdx" />
+You should leave the `dev` command running when you're developing.
 
-<Note>
-You must leave this running for the rest of the steps.
-</Note>
-
-## Use the CLI
-
-At this point you should have your Next.js site and ngrok running in separate terminal windows.
-
-In a new terminal:
-
-The easiest way to get started it to use the CLI. It will add Trigger.dev to your existing Next.js project, setup a route and give you an example file.
-
+In a **new terminal window or tab** run:
 
 <CodeGroup>
 
 ```bash npm
-npx @trigger.dev/init@latest
+npx @trigger.dev/cli@latest dev
 ```
 
 ```bash pnpm
-pnpm dlx @trigger.dev/init@latest
+pnpm dlx @trigger.dev/cli@latest dev
 ```
 
 ```bash yarn
-yarn @trigger.dev/init@latest
+yarn @trigger.dev/cli@latest dev
 ```
 
 </CodeGroup>
 
-It will ask you a few questions
-
-1. Are you using the Trigger.dev cloud or self-hosted? You're probably using the cloud.
-2. Enter your development API key. Enter the key you copied earlier
-3. What's the URL of your Next.js project? Use the ngrok forwarding URL you just copied
+<Note>
+  You can optionally pass the port if you're not running on 3000 by adding
+  `--port 3001` to the end
+</Note>
 
 ## Your first job
 
-The CLI created a simple Job for you. There will be a new file either `api/trigger/route.ts` or `pages/api/trigger.ts`.
+The CLI init command created a simple Job for you. There will be a new file either `api/trigger/route.ts` or `pages/api/trigger.ts`.
 
 In there is this Job:
 
@@ -98,7 +130,7 @@ new Job(client, {
 });
 ```
 
-If you login to your Trigger.dev project you will see this Job in the "Jobs" section:
+If you navigate to your Trigger.dev project you will see this Job in the "Jobs" section:
 
 ![Your first Job](/images/first-job.png)
 
@@ -109,7 +141,7 @@ There are two way to trigger this Job.
 1. Use the "Test" functionality in the dashboard.
 2. Use the Trigger.dev API (either via our SDK or a web request)
 
-### Using the dashboard
+### "Testing" from the dashboard
 
 Click into the Job and then open the "Test" tab. You should see this page:
 
@@ -119,12 +151,28 @@ This Job doesn't have a payload schema (meaning it takes an empty object), so yo
 
 Congratulations, you should get redirected so you can see your first Run!
 
-### Using the SDK
+## What's next?
 
-You can also send an event programmatically using the `client.sendEvent` function.
-
-```typescript
-const result = await client.sendEvent({ name: "example.event", payload: {} });
-```
-
-The most likely scenario is that you will use this to send events from your api routes when user's interact with your app.
+<CardGroup cols={2}>
+  <Card
+    title="Write your first Job"
+    icon="hexagon-plus"
+    href="/documentation/guides/create-a-job"
+  >
+    A Guide for how to create your first real Job
+  </Card>
+  <Card
+    title="What is Trigger.dev"
+    icon="wand-magic-sparkles"
+    href="/documentation/concepts/what-is-triggerdotdev"
+  >
+    Learn more about how Trigger.dev works and how it can help you.
+  </Card>
+  <Card title="Examples" icon="slot-machine" href="/examples">
+    One of the quickest ways to learn how Trigger.dev works is to view some
+    example Jobs.
+  </Card>
+  <Card title="Get help" icon="hire-a-helper" href="/documentation/get-help">
+    Struggling getting setup or have a question? We're here to help.
+  </Card>
+</CardGroup>
