@@ -2,16 +2,11 @@
 
 ## Install and initial setup
 
-Install the CLI globally on your machine
-`npm i -g mintlify`
-
-Then run:
-`mintlify install`
-It takes a while.
+`npm install`
 
 ## Running the app
 
-`pnpm run dev`
+`npm run dev`
 
 ## View the app locally
 
