@@ -106,6 +106,42 @@ yarn @trigger.dev/cli@latest dev
   `--port 3001` to the end
 </Note>
 
+<Accordion title="Advanced: Run your Next.js server together with the CLI">
+You can modify your `package.json` to run both the Next.js server and the CLI `dev` command together.
+
+1. Install the `concurrently` package:
+
+  <CodeGroup>
+
+```bash npm
+npm install concurrently --save-dev
+```
+
+```bash pnpm
+pnpm install concurrently --save-dev
+```
+
+```bash yarn
+yarn add concurrently --dev
+```
+
+</CodeGroup>
+
+2. Modify your `package.json` file's `dev` script.
+
+```json package.json
+...
+"scripts": {
+  "dev": "concurrently --kill-others npm:dev:*",
+  "dev:next": "next dev",
+  "dev:trigger": "npx @trigger.dev/cli dev",
+  ...
+}
+...
+```
+
+</Accordion>
+
 ## Your first job
 
 The CLI init command created a simple Job for you. There will be a new file either `api/trigger/route.ts` or `pages/api/trigger.ts`.
