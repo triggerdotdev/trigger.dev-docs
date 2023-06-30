@@ -21,7 +21,19 @@ In this example we use [Zod](https://zod.dev/?id=introduction), a TypeScript-fir
 
 ```ts
 import { Resend } from "@trigger.dev/resend";
+import { Job, TriggerClient, eventTrigger } from "@trigger.dev/sdk";
 import { z } from "zod";
+
+const client = new TriggerClient({
+  id: "my-nextjs-project",
+  apiKey: process.env.TRIGGER_API_KEY,
+  apiUrl: process.env.TRIGGER_API_URL,
+});
+
+const resend = new Resend({
+  id: "resend",
+  apiKey: process.env.RESEND_API_KEY!,
+});
 
 new Job(client, {
   id: "send-resend-email",
@@ -47,6 +59,7 @@ new Job(client, {
     });
   },
 });
+
 ```
 
 ## Tasks
