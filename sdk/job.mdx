@@ -104,8 +104,24 @@ new Job(client, {
     <ParamField body="version" type="string" required>
       The `version` property is used to version your Job. A new version will be created if you change this property. We recommend using [semantic versioning](https://www.baeldung.com/cs/semantic-versioning), e.g. `1.0.3`.
     </ParamField>
-    <ParamField body="enabled" type="boolean">
-      If set to `false`, the Job will not run. Defaults to `true`.
+    <ParamField body="trigger" type="object" required>
+      The `trigger` property is used to define when the Job should run. There are currently the following Trigger types:
+      - [cronTrigger](/sdk/crontrigger)
+      - [intervalTrigger](/sdk/intervaltrigger)
+      - [eventTrigger](/sdk/eventtrigger)
+      - [DynamicTrigger](/sdk/dynamictrigger)
+      - [DynamicSchedule](/sdk/dynamicschedule)
+      - integration Triggers, like webhooks. See the [integrations](/integrations) page for more information.
+    </ParamField>
+    <ParamField body="run" type="function" required>
+      This function gets called automatically when a Run is Triggered. It has three parameters:
+      1. `payload` – The payload that was sent to the Trigger API.
+      2. [io](/sdk/io) – An object that contains the integrations that you specified in the `integrations` property and other useful functions like delays and running Tasks.
+      3. [context](/sdk/context) – An object that contains information about the Organization, Job, Run and more.
+
+      This is where you put the code you want to run for a Job. You can use normal code in here and you can also use Tasks.
+
+      You can return a value from this function and it will be sent back to the Trigger API.
     </ParamField>
     <ParamField body="integrations" type="object">
       Imports the specified integrations into the Job. The integrations will be available on the `io` object in the `run()` function with the same name as the key. For example:
@@ -125,14 +141,11 @@ new Job(client, {
       });
       ```
     </ParamField>
-    <ParamField body="trigger" type="object" required>
-      The `trigger` property is used to define when the Job should run. There are currently the following Trigger types:
-      - [cronTrigger](/sdk/crontrigger)
-      - [intervalTrigger](/sdk/intervaltrigger)
-      - [eventTrigger](/sdk/eventtrigger)
-      - [DynamicTrigger](/sdk/dynamictrigger)
-      - [DynamicSchedule](/sdk/dynamicschedule)
-      - integration Triggers, like webhooks. See the [integrations](/integrations) page for more information.
+    <ParamField body="enabled" type="boolean">
+      The `enabled` property is used to enable or disable the Job. If you disable a Job, it will not run.
+    </ParamField>
+    <ParamField body="queue" type="string | QueueOptions">
+      The `queue` property is used to specify a custom queue. If you use an Object and specify the `maxConcurrent` option, you can control how many simulataneous runs can happen.
     </ParamField>
 
   </Expandable>
@@ -140,24 +153,4 @@ new Job(client, {
 
 ## Returns
 
-<ResponseField name="TriggerClient instance" type="TriggerClient" />
-
-## Constructor
-
-### [Job()](/sdk/job/constructor)
-
-Creates a new Job object.
-
-## Instance properties
-
-<ResponseField name="id" type="string">
-  Is used to uniquely identify the client.
-</ResponseField>
-
-## Instance methods
-
-#### [sendEvent()](/sdk/triggerclient/instancemethods/sendevent)
-
-Sending an event triggers any Jobs that are listening for that event (based on the name). Use [eventTrigger()](/sdk/eventtrigger) on a Job to listen for events.
-
-You can call this function from anywhere in your code to send an event. The other way to send an event is by using [io.sendEvent()](/sdk/io) from inside a `run()` function.
+<ResponseField name="Job instance" type="Job" />
