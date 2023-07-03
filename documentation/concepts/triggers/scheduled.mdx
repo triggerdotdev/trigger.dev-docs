@@ -17,12 +17,11 @@ new Job(client, {
   id: "scheduled-job-1",
   name: "Scheduled Job 1",
   version: "0.1.1",
-  enabled: true,
   trigger: intervalTrigger({
     seconds: 60,
   }),
   run: async (payload, io, ctx) => {
-    await ctx.logger.info("Received the scheduled event", {
+    await io.logger.info("Received the scheduled event", {
       payload,
     });
 
@@ -46,12 +45,11 @@ new Job(client, {
   id: "scheduled-job-2",
   name: "Scheduled Job 2",
   version: "0.1.1",
-  enabled,
   trigger: cronTrigger({
     cron: "30 14 * * 1",
   }),
   run: async (payload, io, ctx) => {
-    await ctx.logger.info("Received the scheduled event", {
+    await io.logger.info("Received the scheduled event", {
       payload,
     });
 
