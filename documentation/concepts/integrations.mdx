@@ -27,7 +27,7 @@ import { Slack } from "@trigger.dev/slack";
 //1. create GitHub client using a token
 const github = new Github({
   id: "github",
-  token: process.env.GITHUB_TOKEN,
+  token: process.env.GITHUB_TOKEN!,
 });
 
 //2. create Slack client using OAuth

@@ -15,14 +15,14 @@ import { OpenAI } from "@trigger.dev/openai";
 const github = new Github({
   //this is used to identify the connection
   id: "github",
-  token: process.env.GITHUB_TOKEN,
+  token: process.env.GITHUB_TOKEN!,
 });
 
 // OpenAI uses API keys so the param is called `apiKey`
 const openai = new OpenAI({
   //this is used to identify the connection
   id: "openai",
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY!,
 });
 ```
 

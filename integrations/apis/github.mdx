@@ -30,7 +30,7 @@ import { Github } from "@trigger.dev/github";
 //create GitHub client using a token
 const github = new Github({
   id: "github",
-  token: process.env.GITHUB_TOKEN,
+  token: process.env.GITHUB_TOKEN!,
 });
 
 //create GitHub client using OAuth
@@ -65,7 +65,7 @@ import { Github, events } from "@trigger.dev/github";
 
 const github = new Github({
   id: "github",
-  token: process.env.GITHUB_TOKEN,
+  token: process.env.GITHUB_TOKEN!,
 });
 
 new Job(client, {

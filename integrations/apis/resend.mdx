@@ -44,8 +44,8 @@ import { z } from "zod";
 
 const client = new TriggerClient({
   id: "my-nextjs-project",
-  apiKey: process.env.TRIGGER_API_KEY,
-  apiUrl: process.env.TRIGGER_API_URL,
+  apiKey: process.env.TRIGGER_API_KEY!,
+  apiUrl: process.env.TRIGGER_API_URL!,
 });
 
 const resend = new Resend({

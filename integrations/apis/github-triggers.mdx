@@ -26,7 +26,7 @@ import { Github, events } from "@trigger.dev/github";
 
 const github = new Github({
   id: "github",
-  token: process.env.GITHUB_TOKEN,
+  token: process.env.GITHUB_TOKEN!,
 });
 
 new Job(client, {

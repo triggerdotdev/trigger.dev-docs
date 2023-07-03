@@ -12,7 +12,7 @@ Clients are created using the `TriggerClient` class.
 ```ts
 export const client = new TriggerClient({
   id: "my-webapp",
-  apiKey: process.env.TRIGGER_API_KEY,
+  apiKey: process.env.TRIGGER_API_KEY!,
   logLevel: "debug",
 });
 ```
