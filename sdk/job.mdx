@@ -1,6 +1,163 @@
 ---
 title: "Job"
-# description: ""
+description: "Job is used to create and configure a Job"
 ---
 
-### Page coming soon!
+A [Job](/documentation/concepts/jobs) is used to define the [Trigger](/documentation/concepts/triggers), metadata, and what happens when it runs.
+
+By far the most important thing to understand is the constructor.
+
+# Constructor
+
+<RequestExample>
+
+```ts cronTrigger
+new Job(client, {
+  id: "slack-kpi-summary",
+  name: "Slack kpi summary",
+  version: "0.1.1",
+  integrations: {
+    slack,
+  },
+  trigger: cronTrigger({
+    cron: "0 9 * * *", // 9am every day (UTC)
+  }),
+  run: async (payload, io, ctx) => {
+    const { revenue } = await db.getKpiSummary(payload.ts);
+    const response = await io.slack.postMessage("Slack 📝", {
+      text: `Yesterday's revenue was $${revenue}`,
+      channel: "C04GWUTDC3W",
+    });
+
+    return response;
+  },
+});
+```
+
+```ts webhook
+new Job(client, {
+  id: "github-integration-on-issue",
+  name: "GitHub Integration - On Issue",
+  version: "0.1.0",
+  trigger: github.triggers.repo({
+    event: events.onIssue,
+    owner: "triggerdotdev",
+    repo: "empty",
+  }),
+  run: async (payload, io, ctx) => {
+    await io.logger.info("This is a simple log info message");
+    return { payload, ctx };
+  },
+});
+```
+
+```ts event
+new Job(client, {
+  id: "openai-joke",
+  name: "OpenAI Joke",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "openai.joke",
+    schema: z.object({
+      jokePrompt: z.string(),
+    }),
+  }),
+  integrations: {
+    openai,
+  },
+  run: async (payload, io, ctx) => {
+    const joke = await io.openai.backgroundCreateChatCompletion(
+      "generate-jokes",
+      {
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            content: payload.jokePrompt,
+          },
+        ],
+      }
+    );
+
+    return joke.choices;
+  },
+});
+```
+
+</RequestExample>
+
+## Parameters
+
+<ParamField body="client" type="object" required>
+  An instance of [TriggerClient](/sdk/triggerclient) that is used to send events
+  to the Trigger API.
+</ParamField>
+
+<ParamField body="options" type="object" required>
+  <Expandable title="properties" defaultOpen>
+    <ParamField body="id" type="string" required>
+      The `id` property is used to uniquely identify the Job. Only change this if you want to create a new Job.
+    </ParamField>
+    <ParamField body="name" type="string" required>
+      The `name` of the Job that you want to appear in the dashboard and logs. You can change this without creating a new Job.
+    </ParamField>
+    <ParamField body="version" type="string" required>
+      The `version` property is used to version your Job. A new version will be created if you change this property. We recommend using [semantic versioning](https://www.baeldung.com/cs/semantic-versioning), e.g. `1.0.3`.
+    </ParamField>
+    <ParamField body="enabled" type="boolean">
+      If set to `false`, the Job will not run. Defaults to `true`.
+    </ParamField>
+    <ParamField body="integrations" type="object">
+      Imports the specified integrations into the Job. The integrations will be available on the `io` object in the `run()` function with the same name as the key. For example:
+      ```ts
+      new Job(client, {
+        //... other options
+        integrations: {
+          slack,
+          gh: github,
+        },
+        run: async (payload, io, ctx) => {
+          //slack is available on io.slack
+          io.slack.postMessage(...);
+          //github is available on io.gh
+          io.gh.addIssueLabels(...);
+        }
+      });
+      ```
+    </ParamField>
+    <ParamField body="trigger" type="object" required>
+      The `trigger` property is used to define when the Job should run. There are currently the following Trigger types:
+      - [cronTrigger](/sdk/crontrigger)
+      - [intervalTrigger](/sdk/intervaltrigger)
+      - [eventTrigger](/sdk/eventtrigger)
+      - [DynamicTrigger](/sdk/dynamictrigger)
+      - [DynamicSchedule](/sdk/dynamicschedule)
+      - integration Triggers, like webhooks. See the [integrations](/integrations) page for more information.
+    </ParamField>
+
+  </Expandable>
+</ParamField>
+
+## Returns
+
+<ResponseField name="TriggerClient instance" type="TriggerClient" />
+
+## Constructor
+
+### [Job()](/sdk/job/constructor)
+
+Creates a new Job object.
+
+## Instance properties
+
+<ResponseField name="id" type="string">
+  Is used to uniquely identify the client.
+</ResponseField>
+
+## Instance methods
+
+#### [sendEvent()](/sdk/triggerclient/instancemethods/sendevent)
+
+Sending an event triggers any Jobs that are listening for that event (based on the name). Use [eventTrigger()](/sdk/eventtrigger) on a Job to listen for events.
+
+You can call this function from anywhere in your code to send an event. The other way to send an event is by using [io.sendEvent()](/sdk/io) from inside a `run()` function.
