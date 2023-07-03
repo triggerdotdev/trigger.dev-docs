@@ -27,38 +27,8 @@ Creates a new TriggerClient object.
 
 ## Instance methods
 
-#### [attachJobToDynamicTrigger()](/sdk/triggerclient/instancemethods/attachjobtodynamictrigger)
+#### [sendEvent()](/sdk/triggerclient/instancemethods/sendevent)
 
-Attaches the passed in `Job` and `DynamicTrigger` to the `TriggerClient`. This happens automatically when a `Job` is created, so you shouldn't need to call this method yourself.
+Sending an event triggers any Jobs that are listening for that event (based on the name). Use [eventTrigger()](/sdk/eventtrigger) on a Job to listen for events.
 
-### Internal methods
-
-#### attach()
-
-This happens automatically on Job creation, so you shouldn't need to call this method directly yourself. It attaches the passed in `Job` to the `TriggerClient`.
-
-//todo mark these and don't have pages on them, as they're not meant to be used
-
-#### attachDynamicTrigger()
-
-This happens automatically when creating a `DynamicTrigger`, so you shouldn't need to call this method directly yourself. It attaches the passed in `DynamicTrigger` to the `TriggerClient`.
-
-#### attachJobToDynamicTrigger()
-
-This happens automatically when a `Job` is created, so you shouldn't need to call this method directly yourself. It attaches the passed in `Job` and `DynamicTrigger` to the `TriggerClient`.
-
-#### attachSource()
-
-This happens automatically when a Job with an `ExternalSource` is created, so you shouldn't need to call this method directly yourself. It attaches the passed in `ExternalSource` to the `TriggerClient`.
-
-#### attachDynamicSchedule()
-
-This happens automatically when a `Job` with a `DynamicSchedule` Trigger is created, so you shouldn't need to call this method directly yourself. It attaches the passed in `DynamicSchedule` to the `TriggerClient`.
-
-#### registerTrigger()
-
-This happens automatically when `register()` is called on a `DynamicTrigger`, so you shouldn't need to call this method directly yourself.
-
-#### getAuth()
-
-This happens automatically when a `Job` starts, so you shouldn't need to call this medthod directly yourself. If the connection is OAuth it fetches the latest accessToken from the API.
+You can call this function from anywhere in your code to send an event. The other way to send an event is by using [io.sendEvent()](/sdk/io) from inside a `run()` function.

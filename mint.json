@@ -184,7 +184,7 @@
             "sdk/triggerclient/constructor",
             {
               "group": "Instance methods",
-              "pages": ["sdk/triggerclient/instancemethods/attach"]
+              "pages": ["sdk/triggerclient/instancemethods/sendevent"]
             }
           ]
         },
