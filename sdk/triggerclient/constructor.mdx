@@ -23,6 +23,24 @@ description: "The `TriggerClient()` constructor creates a new [TriggerClient](/s
       running your own Trigger.dev instance.
     </ParamField>
 
+    <ParamField body="logLevel" type="log | error | warn | info | debug">
+      The `logLevel` property is an optional property that specifies the level of
+      logging for the TriggerClient. The level is inherited by all Jobs that use this Client, unless they also specify a `logLevel`.
+      - `log` - logs only essential messages
+      - `error` - logs error messages
+      - `warn` - logs errors and warning messages
+      - `info` - logs errors, warnings and info messages
+      - `debug` - logs everything with full verbosity
+    </ParamField>
+
+    <ParamField body="verbose" type="boolean">
+    Very verbose log messages, default to false.
+    </ParamField>
+
+    <ParamField body="ioLogLocalEnabled" type="boolean">
+
+    </ParamField>
+
   </Expandable>
 </ParamField>
 
