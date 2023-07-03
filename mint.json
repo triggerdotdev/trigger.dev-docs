@@ -189,7 +189,10 @@
           ]
         },
         "sdk/job",
-        "sdk/io",
+        {
+          "group": "IO",
+          "pages": ["sdk/io/overview", "sdk/io/wait", "sdk/io/logger"]
+        },
         "sdk/context",
         "sdk/eventTrigger",
         "sdk/dynamic-trigger",
