@@ -191,13 +191,13 @@
         "sdk/job",
         "sdk/io",
         "sdk/context",
-        "eventTrigger",
+        "sdk/eventTrigger",
         "sdk/dynamic-trigger",
-        "cronTrigger",
-        "intervalTrigger",
+        "sdk/cronTrigger",
+        "sdk/intervalTrigger",
         "sdk/dynamic-schedule",
-        "isTriggerError",
-        "redactString"
+        "sdk/isTriggerError",
+        "sdk/redactString"
       ]
     },
     {
