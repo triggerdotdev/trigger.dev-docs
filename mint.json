@@ -191,7 +191,12 @@
         "sdk/job",
         {
           "group": "IO",
-          "pages": ["sdk/io/overview", "sdk/io/wait", "sdk/io/logger"]
+          "pages": [
+            "sdk/io/overview",
+            "sdk/io/wait",
+            "sdk/io/sendevent",
+            "sdk/io/logger"
+          ]
         },
         "sdk/context",
         "sdk/eventTrigger",

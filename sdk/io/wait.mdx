@@ -6,10 +6,7 @@ description: "`io.wait()` waits for the specified amount of time before continui
 
 ## Parameters
 
-<ResponseField name="key" type="string" required>
-  Should be a stable and unique key inside the `run()`. See
-  [resumability](/documentation/concepts/resumability) for more information.
-</ResponseField>
+<Snippet file="stable-key-param.mdx" />
 <ResponseField name="seconds" type="number" required>
   The number of seconds to wait. This can be very long, serverless timeouts are
   not an issue.
