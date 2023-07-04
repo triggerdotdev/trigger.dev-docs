@@ -5,16 +5,16 @@ description: "The SDK is how you interact with Trigger.dev"
 
 <Note>The SDK requires Node.js v18 or above</Note>
 
-| Name                                     | Description                                                                        |
-| ---------------------------------------- | ---------------------------------------------------------------------------------- |
-| [TriggerClient](//sdk/triggerclient)     | TriggerClient is used to create a client that connects to the Trigger.dev platform |
-| [Job](/sdk/job)                          | Job-related operations and features                                                |
-| [IO](/sdk/io)                            | Input/output operations and functions                                              |
-| [Context](/sdk/context)                  | Context manipulation and usage in the SDK                                          |
-| [EventTrigger](/sdk/eventtrigger)        | Event Trigger functionality and usage                                              |
-| [Dynamic Trigger](/sdk/dynamic-trigger)  | Dynamic Trigger principles and implementation                                      |
-| [CronTrigger](/sdk/crontrigger)          | Cron-based trigger definition and usage                                            |
-| [IntervalTrigger](/sdk/intervaltrigger)  | Interval-based trigger definition and usage                                        |
-| [Dynamic Schedule](/sdk/dynamicschedule) | Dynamic Schedule principles and implementation                                     |
-| [isTriggerError](/sdk/istriggererror)    | Function to check if an error was caused by a trigger                              |
-| [RedactString](/sdk/redactstring)        | Function to redact sensitive information from a string                             |
+| Name                                     | Description                                                                                                                    |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [TriggerClient](//sdk/triggerclient)     | TriggerClient is used to create a client that connects to the Trigger.dev platform                                             |
+| [Job](/sdk/job)                          | Create, configure and run a Job                                                                                                |
+| [IO](/sdk/io)                            | The second parameter in a Job's `run()` function. It holds integrations and useful actions you can perform.                    |
+| [Context](/sdk/context)                  | The third parameter in a Job's `run()` function. An object that contains information about the Organization, Job, Run and more |
+| [EventTrigger](/sdk/eventtrigger)        | Event Trigger functionality and usage                                                                                          |
+| [Dynamic Trigger](/sdk/dynamic-trigger)  | Dynamic Trigger principles and implementation                                                                                  |
+| [CronTrigger](/sdk/crontrigger)          | Cron-based trigger definition and usage                                                                                        |
+| [IntervalTrigger](/sdk/intervaltrigger)  | Interval-based trigger definition and usage                                                                                    |
+| [Dynamic Schedule](/sdk/dynamicschedule) | Dynamic Schedule principles and implementation                                                                                 |
+| [isTriggerError](/sdk/istriggererror)    | Use this function if you're using a `try/catch` block to catch errors.                                                         |
+| [RedactString](/sdk/redactstring)        | Function to redact sensitive information from a string                                                                         |
