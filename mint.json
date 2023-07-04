@@ -198,7 +198,9 @@
             "sdk/io/logger",
             "sdk/io/backgroundfetch",
             "sdk/io/registerinterval",
-            "sdk/io/unregisterinterval"
+            "sdk/io/unregisterinterval",
+            "sdk/io/registercron",
+            "sdk/io/unregistercron"
           ]
         },
         "sdk/context",

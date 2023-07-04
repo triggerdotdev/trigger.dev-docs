@@ -3,7 +3,37 @@ title: "Overview"
 description: "The second parameter in a Job's `run()` function. It holds integrations and useful actions you can perform."
 ---
 
-### Instance methods
+## Integrations
+
+Any integrations that you added in the `integrations` param of the [Job constructor](/sdk/job) will be available on the `io` object in the `run()` function with the same name as the key. For example:
+
+<Accordion title="How to pass in integrations">
+```typescript
+new Job(client, {
+  //... other options
+  integrations: {
+    slack,
+    gh: github,
+  },
+  run: async (payload, io, ctx) => {
+    //slack is available on io.slack
+    io.slack.postMessage(...);
+    //github is available on io.gh
+    io.gh.addIssueLabels(...);
+  }
+});
+```
+</Accordion>
+
+View [the integrations documentation](/integrations) for information on how to use integrations.
+
+## Properties
+
+### [logger](/sdk/io/logger)
+
+Used to send log messages to the [Run log](/documentation/guides/viewing-runs).
+
+## Instance methods
 
 ### [wait()](/sdk/io/wait)
 
@@ -27,10 +57,14 @@ If you want to send an event from outside a run (e.g. just from your backend) yo
 
 `io.unregisterInterval()` allows you to unregister a [DynamicSchedule](/sdk/dynamicschedule) that was previously registered with `io.registerInterval()`.
 
-## Integrations
+### [registerCron()](/sdk/io/registercron)
 
-## Properties
+`io.registerCron()` allows you to register a [DynamicSchedule](/sdk/dynamicschedule) that will run on a regular cron schedule.
 
-### [logger](/sdk/io/logger)
+### [unregisterCron()](/sdk/io/unregistercron)
 
-Used to send log messages to the [Run log](/documentation/guides/viewing-runs).
+`io.unregisterCron()` allows you to unregister a [DynamicSchedule](/sdk/dynamicschedule) that was previously registered with `io.registerCron()`.
+
+```
+
+```
