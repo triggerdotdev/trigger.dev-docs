@@ -79,6 +79,9 @@ new Job(client, {
     owner: "triggerdotdev",
     repo: "trigger.dev",
   }),
+  integrations: {
+    github,
+  },
   run: async (payload, io, ctx) => {
     //wrap the SDK call in runTask
     const { data } = await io.runTask(
