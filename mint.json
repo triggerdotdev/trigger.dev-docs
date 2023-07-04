@@ -193,14 +193,16 @@
           "group": "IO",
           "pages": [
             "sdk/io/overview",
+            "sdk/io/logger",
             "sdk/io/wait",
             "sdk/io/sendevent",
-            "sdk/io/logger",
+            "sdk/io/runtask",
             "sdk/io/backgroundfetch",
             "sdk/io/registerinterval",
             "sdk/io/unregisterinterval",
             "sdk/io/registercron",
-            "sdk/io/unregistercron"
+            "sdk/io/unregistercron",
+            "sdk/io/registertrigger"
           ]
         },
         "sdk/context",
