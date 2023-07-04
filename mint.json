@@ -197,6 +197,7 @@
             "sdk/io/wait",
             "sdk/io/sendevent",
             "sdk/io/runtask",
+            "sdk/io/try",
             "sdk/io/backgroundfetch",
             "sdk/io/registerinterval",
             "sdk/io/unregisterinterval",
