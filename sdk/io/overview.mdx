@@ -15,28 +15,18 @@ Waits for a certain amount of time before continuing the Job. Delays works even 
 
 If you want to send an event from outside a run (e.g. just from your backend) you can use [client.sendEvent()](/sdk/triggerclient/instancemethods/sendevent).
 
+### [backgroundFetch()](/sdk/io/backgroundfetch)
+
+`io.backgroundFetch()` allows you to fetch data from a URL that can take longer that the serverless timeout. The actual `fetch` request is performed on the Trigger.dev platform, and the response is sent back to you. An example use case is fetching data from a slow API, like some AI endpoints.
+
+### [registerInterval()](/sdk/io/registerinterval)
+
+`io.registerInterval()` allows you to register a [DynamicSchedule](/sdk/dynamic-schedule) that will run on a regular interval.
+
+## Integrations
+
 ## Properties
 
-<ResponseField name="logger" type="IOLogger">
-  Used to send log messages to the [Run log](/documentation/guides/viewing-runs).
+### [logger](/sdk/io/logger)
 
-There are 5 levels:
-`io.logger.log()` - logs only essential messages
-`io.logger.error()` - logs error messages
-`io.logger.warn()` - logs errors and warning messages
-`io.logger.info()` - logs errors, warnings and info messages
-`io.logger.debug()` - logs everything with full verbosity
-
-```ts
-await io.logger.error("This is a log error message", {
-  payload,
-});
-```
-
-You pass a message and an optional object with additional data to log.
-
-Please note that if you set the `logLevel` on the Job or Client so only messages of a certain level are logged, then the `io.logger` will only log messages of that level or higher.
-
-</ResponseField>
-
-### `integrations`
+Used to send log messages to the [Run log](/documentation/guides/viewing-runs).

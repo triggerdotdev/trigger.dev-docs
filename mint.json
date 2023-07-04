@@ -195,7 +195,9 @@
             "sdk/io/overview",
             "sdk/io/wait",
             "sdk/io/sendevent",
-            "sdk/io/logger"
+            "sdk/io/logger",
+            "sdk/io/backgroundfetch",
+            "sdk/io/registerinterval"
           ]
         },
         "sdk/context",
