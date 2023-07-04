@@ -125,21 +125,7 @@ new Job(client, {
     </ParamField>
     <ParamField body="integrations" type="object">
       Imports the specified integrations into the Job. The integrations will be available on the `io` object in the `run()` function with the same name as the key. For example:
-      ```ts
-      new Job(client, {
-        //... other options
-        integrations: {
-          slack,
-          gh: github,
-        },
-        run: async (payload, io, ctx) => {
-          //slack is available on io.slack
-          io.slack.postMessage(...);
-          //github is available on io.gh
-          io.gh.addIssueLabels(...);
-        }
-      });
-      ```
+      <Snippet file="how-to-pass-integrations.mdx" />
     </ParamField>
     <ParamField body="enabled" type="boolean">
       The `enabled` property is used to enable or disable the Job. If you disable a Job, it will not run.

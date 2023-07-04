@@ -11,7 +11,9 @@ description: "How to use integrations"
 
 [Integrations](/documentation/concepts/integrations) allow you to quickly use APIs, including webhooks and Tasks.
 
-There are two ways to connect integrations, OAuth and API Keys/Access Tokens.
+## Authentication
+
+There are two ways to authenticate integrations, OAuth and API Keys/Access Tokens.
 
 <CardGroup cols={2}>
   <Card
@@ -36,3 +38,9 @@ There are two ways to connect integrations, OAuth and API Keys/Access Tokens.
     Use OAuth to connect an integration for your team or your users
   </Card>
 </CardGroup>
+
+## Passing integrations into your Jobs
+
+You must pass integrations into your Job. Passed in integrations will be available on the `io` object in the `run()` function with the same name as the key. For example:
+
+<Snippet file="how-to-pass-integrations.mdx" />

@@ -8,21 +8,7 @@ description: "The second parameter in a Job's `run()` function. It holds integra
 Any integrations that you added in the `integrations` param of the [Job constructor](/sdk/job) will be available on the `io` object in the `run()` function with the same name as the key. For example:
 
 <Accordion title="How to pass in integrations">
-```typescript
-new Job(client, {
-  //... other options
-  integrations: {
-    slack,
-    gh: github,
-  },
-  run: async (payload, io, ctx) => {
-    //slack is available on io.slack
-    io.slack.postMessage(...);
-    //github is available on io.gh
-    io.gh.addIssueLabels(...);
-  }
-});
-```
+  <Snippet file="how-to-pass-integrations.mdx" />
 </Accordion>
 
 View [the integrations documentation](/integrations) for information on how to use integrations.
@@ -64,7 +50,3 @@ If you want to send an event from outside a run (e.g. just from your backend) yo
 ### [unregisterCron()](/sdk/io/unregistercron)
 
 `io.unregisterCron()` allows you to unregister a [DynamicSchedule](/sdk/dynamicschedule) that was previously registered with `io.registerCron()`.
-
-```
-
-```
