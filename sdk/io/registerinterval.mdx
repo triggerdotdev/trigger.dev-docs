@@ -1,14 +1,14 @@
 ---
 title: "io.registerInterval()"
 sidebarTitle: "registerInterval()"
-description: "`io.registerInterval()` allows you to register a [DynamicSchedule](/sdk/dynamic-schedule) that will trigger any jobs it's attached to on a regular interval."
+description: "`io.registerInterval()` allows you to register a [DynamicSchedule](/sdk/dynamicschedule) that will trigger any jobs it's attached to on a regular interval."
 ---
 
 ## Parameters
 
 <Snippet file="stable-key-param.mdx" />
 <ResponseField name="dynamicSchedule" type="DynamicSchedule" required>
-  A [DynamicSchedule](/sdk/dynamic-schedule) that will trigger any Jobs it's
+  A [DynamicSchedule](/sdk/dynamicschedule) that will trigger any Jobs it's
   attached to on a regular interval.
 </ResponseField>
 <ResponseField name="id" type="string" required>
@@ -26,6 +26,8 @@ description: "`io.registerInterval()` allows you to register a [DynamicSchedule]
 </ResponseField>
 
 ## Returns
+
+A Promise that resolves to an object with the following fields:
 
 <ResponseField name="id" type="string" required>
   A unique id for the interval. This is used to identify and unregister the
@@ -63,7 +65,6 @@ new Job(client, {
   id: "my-job",
   name: "My job",
   version: "0.1.1",
-  enabled,
   trigger: eventTrigger({
     name: "dynamic.interval",
     schema: z.object({
