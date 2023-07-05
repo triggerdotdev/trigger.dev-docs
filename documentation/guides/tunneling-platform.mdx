@@ -11,7 +11,30 @@ There are a few ways to do this, but we recommend using [ngrok](https://ngrok.co
 
 ### Start ngrok
 
-<Snippet file="ngrok-steps.mdx" />
+1. Install ngrok:
+
+<CodeGroup>
+```sh Mac
+brew install ngrok/ngrok/ngrok
+```
+
+```sh Windows
+choco install ngrok
+```
+
+</CodeGroup>
+
+2. Open a new terminal window/tab, you need to leave this running
+
+3. Create an http tunnel at port 3030:
+
+```sh
+ngrok http 3030
+```
+
+4. Grab your forwarding address in the ngrok output:
+
+![ngrok](/images/ngrok.png)
 
 ### 2. Use the forwarding URL
 

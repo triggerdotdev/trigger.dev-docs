@@ -107,14 +107,6 @@
           ]
         },
         {
-          "group": "Tunneling",
-          "pages": [
-            "documentation/guides/tunneling",
-            "documentation/guides/tunneling-localhost",
-            "documentation/guides/tunneling-platform"
-          ]
-        },
-        {
           "group": "Using integrations",
           "pages": [
             "documentation/guides/using-integrations",
@@ -132,7 +124,13 @@
           ]
         },
         "documentation/guides/zod",
-        "documentation/guides/self-hosting",
+        {
+          "group": "Self hosting",
+          "pages": [
+            "documentation/guides/self-hosting",
+            "documentation/guides/tunneling-platform"
+          ]
+        },
         "documentation/guides/contributing"
       ]
     },
