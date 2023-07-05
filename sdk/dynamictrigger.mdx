@@ -3,6 +3,8 @@ title: "DynamicTrigger"
 description: "`DynamicTrigger` allows you to define a trigger that can be configured dynamically at runtime."
 ---
 
+Sometimes you want to subscribe to a webhook but you don't know the exact configuration until runtime.
+
 ### Constructor parameters
 
 <ResponseField name="client" type="TriggerClient" required>
@@ -24,6 +26,14 @@ description: "`DynamicTrigger` allows you to define a trigger that can be config
     </ResponseField>
   </Expandable>
 </ResponseField>
+
+### Example use cases:
+
+#### Subscribe to new GitHub issues for all your repos
+
+1. Create a `DynamicTrigger` with the [onIssueOpened](/integrations/apis/github-triggers) event.
+2. Loop through all of your repos add them to it.
+3. Use an [onNewRepository](/integrations/apis/github-triggers) trigger and add them to the `DynamicTrigger`.
 
 <RequestExample>
 
