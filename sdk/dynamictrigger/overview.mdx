@@ -1,31 +1,25 @@
 ---
-title: "DynamicTrigger"
+title: "Overview"
 description: "`DynamicTrigger` allows you to define a trigger that can be configured dynamically at runtime."
 ---
 
 Sometimes you want to subscribe to a webhook but you don't know the exact configuration until runtime.
 
-### Constructor parameters
+## Constructor
 
-<ResponseField name="client" type="TriggerClient" required>
-  The `TriggerClient` instance to use for registering the trigger.
-</ResponseField>
-<ResponseField name="options" type="DynamicTriggerOptions" required>
-  The options for the dynamic trigger.
-  <Expandable title="options" defaultOpen>
-    <ResponseField name="id" type="string" required>
-      Used to uniquely identify a DynamicTrigger
-    </ResponseField>
-    <ResponseField name="event" type="event" required>
-      An event from an [Integration](/integrations) package that you want to
-      attach to the DynamicTrigger. The event types will come through to the
-      payload in your Job's run.
-    </ResponseField>
-    <ResponseField name="source" type="source" required>
-      An external source fron an [Integration](/integrations) package
-    </ResponseField>
-  </Expandable>
-</ResponseField>
+### [DynamicTrigger()](/sdk/dynamictrigger/constructor)
+
+Creates a new `DynamicTrigger` instance.
+
+## Instance methods
+
+### [register()](/sdk/dynamictrigger/register)
+
+Use this method to register a new schedule with the DynamicTrigger.
+
+### [unregister()](/sdk/dynamictrigger/unregister)
+
+Use this method to unregister a schedule from the DynamicTrigger, using the id you used when registering it.
 
 ### Example use cases:
 
