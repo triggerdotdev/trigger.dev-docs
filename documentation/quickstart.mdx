@@ -153,14 +153,19 @@ The CLI init command created a simple Job for you. There will be a new file eith
 In there is this Job:
 
 ```typescript
+//Job definition – uses the client
 new Job(client, {
+  // 1. Metadata
   id: "example-job",
   name: "Example Job",
   version: "0.0.1",
+  // 2. Trigger
   trigger: eventTrigger({
     name: "example.event",
   }),
+  // 3. Run function
   run: async (payload, io, ctx) => {
+    // do something
     await io.logger.info("Hello world!", { payload });
 
     return {
