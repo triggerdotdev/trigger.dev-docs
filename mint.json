@@ -96,6 +96,7 @@
           ]
         },
         "documentation/guides/create-a-job",
+        "documentation/guides/running-jobs",
         {
           "group": "Using the Dashboard",
           "pages": [
