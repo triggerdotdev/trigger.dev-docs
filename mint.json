@@ -209,9 +209,9 @@
         },
         "sdk/context",
         "sdk/eventtrigger",
-        "sdk/dynamictrigger",
         "sdk/crontrigger",
         "sdk/intervaltrigger",
+        "sdk/dynamictrigger",
         "sdk/dynamicschedule",
         "sdk/istriggererror",
         "sdk/redactstring"
