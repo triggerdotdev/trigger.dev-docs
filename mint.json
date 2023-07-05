@@ -210,7 +210,20 @@
         "sdk/crontrigger",
         "sdk/intervaltrigger",
         "sdk/dynamictrigger",
-        "sdk/dynamicschedule",
+        {
+          "group": "DynamicSchedule",
+          "pages": [
+            "sdk/dynamicschedule/overview",
+            "sdk/dynamicschedule/constructor",
+            {
+              "group": "Instance methods",
+              "pages": [
+                "sdk/dynamicschedule/register",
+                "sdk/dynamicschedule/unregister"
+              ]
+            }
+          ]
+        },
         "sdk/istriggererror",
         "sdk/redactstring"
       ]
