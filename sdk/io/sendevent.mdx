@@ -57,7 +57,7 @@ new Job(client, {
     }),
   }),
   run: async (payload, io, ctx) => {
-    console.log("New user created", payload.userId);
+    await io.logger.log("New user created", { userId: payload.userId });
     //do stuff with the new user
   },
 });
