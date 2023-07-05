@@ -207,13 +207,13 @@
           ]
         },
         "sdk/context",
-        "sdk/eventTrigger",
-        "sdk/dynamic-trigger",
-        "sdk/cronTrigger",
-        "sdk/intervalTrigger",
+        "sdk/eventtrigger",
+        "sdk/dynamictrigger",
+        "sdk/crontrigger",
+        "sdk/intervaltrigger",
         "sdk/dynamicschedule",
-        "sdk/isTriggerError",
-        "sdk/redactString"
+        "sdk/istriggererror",
+        "sdk/redactstring"
       ]
     },
     {

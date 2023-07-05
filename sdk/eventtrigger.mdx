@@ -1,0 +1,20 @@
+---
+title: "eventTrigger()"
+sidebarTitle: "eventTrigger()"
+description: "`eventTrigger()` is set as a [Job's trigger](/sdk/job) to subscribe to an event a Job from [a sent event](/sdk/triggerclient/instancemethods/sendevent)."
+---
+
+<Snippet file="send-event-options.mdx" />
+
+You can have multiple Jobs that subscribe to the same event, they will all trigger when the event gets delivered.
+
+## Parameters
+
+<ResponseField name="options" type="object" required>
+  <Expandable title="options" defaultOpen>
+    <ResponseField name="name" type="string" required>
+      The name of the event you are subscribing to. You must send an event with
+      exactly the same name (case sensitive) to trigger the Job.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
