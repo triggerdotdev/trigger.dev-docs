@@ -52,7 +52,10 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": ["documentation/introduction", "documentation/quickstart"]
+      "pages": [
+        "documentation/introduction",
+        "documentation/quickstart"
+      ]
     },
     {
       "group": "Concepts",
@@ -145,7 +148,10 @@
     },
     {
       "group": "Overview",
-      "pages": ["integrations/introduction", "integrations/create"]
+      "pages": [
+        "integrations/introduction",
+        "integrations/create"
+      ]
     },
     {
       "group": "Integrations",
@@ -160,16 +166,23 @@
         },
         {
           "group": "OpenAI",
-          "pages": ["integrations/apis/openai"]
+          "pages": [
+            "integrations/apis/openai"
+          ]
         },
         {
           "group": "Resend",
-          "pages": ["integrations/apis/resend"]
+          "pages": [
+            "integrations/apis/resend"
+          ]
         },
         {
           "group": "Slack",
-          "pages": ["integrations/apis/slack"]
-        }
+          "pages": [
+            "integrations/apis/slack"
+          ]
+        },
+        "integrations/apis/typeform"
       ]
     },
     {
@@ -183,7 +196,9 @@
             "sdk/triggerclient/constructor",
             {
               "group": "Instance methods",
-              "pages": ["sdk/triggerclient/instancemethods/sendevent"]
+              "pages": [
+                "sdk/triggerclient/instancemethods/sendevent"
+              ]
             }
           ]
         },
@@ -243,7 +258,9 @@
     },
     {
       "group": "Overview",
-      "pages": ["examples/introduction"]
+      "pages": [
+        "examples/introduction"
+      ]
     }
   ],
   "footerSocials": {
