@@ -1,0 +1,71 @@
+---
+title: "Using the CLI"
+description: "How to use the CLI"
+---
+
+If you're setting up your project for the first time, we recommend using the CLI by following the [Quickstart guide](/documentation/quickstart).
+
+The CLI makes it easy to set up and run your project on Trigger.dev. It's separated into 2 commands:
+
+1. The `init` command incorporates Trigger.dev into your Next.js project. It performs the following functions:
+
+- Adds Trigger.dev to the project.
+- Creates a new route.
+- Generates an example file.
+
+  During execution, this command requires some configuration parameters. Detailed information on these parameters can be found in the next section. It's important to note that the `init` command is typically executed only once per project.
+
+2. The `dev` command. Once you're running your Next.js project locally, you can then execute the `dev` CLI command to run Trigger.dev locally. You should run this command every time you want to use Trigger.dev locally.
+
+## 1. Set up your Project up
+
+Gif of Init
+
+Run this `init` command in a terminal window to setup your project with Trigger.dev
+
+<CodeGroup>
+
+```bash npm
+npx @trigger.dev/cli@latest init
+```
+
+```bash pnpm
+pnpm dlx @trigger.dev/cli@latest init
+```
+
+```bash yarn
+yarn @trigger.dev/cli@latest init
+```
+
+</CodeGroup>
+
+### CLI parameters
+
+<ResponseField name="message" type="string" required>
+  The log message.
+</ResponseField>
+<ResponseField name="properties" type="object">
+  An optional object with additional data to log.
+</ResponseField>
+
+## 2. Local developement (dev)
+
+Gif of dev
+
+<CodeGroup>
+
+```bash npm
+npx @trigger.dev/cli@latest dev
+```
+
+```bash pnpm
+pnpm dlx @trigger.dev/cli@latest dev
+```
+
+```bash yarn
+yarn @trigger.dev/cli@latest dev
+```
+
+</CodeGroup>
+
+Show accordion for all the options
