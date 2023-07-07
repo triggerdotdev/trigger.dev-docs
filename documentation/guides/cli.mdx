@@ -17,7 +17,7 @@ The CLI makes it easy to set up and run your project on Trigger.dev. It's separa
 
 2. The `dev` command. Once you're running your Next.js project locally, you can then execute the `dev` CLI command to run Trigger.dev locally. You should run this command every time you want to use Trigger.dev locally.
 
-## 1. Set up your Project up
+## 1. Set up your Project
 
 Gif of Init
 
@@ -41,12 +41,17 @@ yarn @trigger.dev/cli@latest init
 
 ### CLI parameters
 
-<ResponseField name="message" type="string" required>
-  The log message.
-</ResponseField>
-<ResponseField name="properties" type="object">
-  An optional object with additional data to log.
-</ResponseField>
+<AccordionGroup>
+  <Accordion title="Are you using the Trigger.dev cloud or self-hosted?">
+    <ResponseField name="Trigger.dev Cloud (https://cloud.trigger.dev)">
+      Description
+    </ResponseField>
+    <ResponseField name="Self-hosted">Description</ResponseField>
+  </Accordion>
+  <Accordion title="Enter your development API key">
+    (Find yours ➡️ https://cloud.trigger.dev)
+  </Accordion>
+</AccordionGroup>
 
 ## 2. Local developement (dev)
 
