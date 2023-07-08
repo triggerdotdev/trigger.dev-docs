@@ -108,7 +108,16 @@ A Task is a resumable unit of a Run that can be retried, resumed and is logged. 
 
 <ResponseField name="onError" type="function">
   An optional callback that will be called when the Task fails. You can perform
-  logic in here and optionally return a custom error object.
+  logic in here and optionally return a custom error object. Returning an object with `{ retryAt: Date, error?: Error }` will retry the Task at the specified Date. You can also just return a new `Error` object to throw a new error. Return nothing to rethrow the original error.
+
+  <Expandable title="arguments">
+    <ResponseField name="error" type="unknown">
+      The underlying error that was thrown inside the Task callback.
+    </ResponseField>
+    <ResponseField name="task" type="Task">
+      The Task that failed.
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
 ## Returns
@@ -141,6 +150,38 @@ new Job(client, {
           column_id: 123,
           note: "test",
         });
+      }
+    );
+
+    //log the url of the created card
+    await io.logger.info(response.data.url);
+  },
+});
+```
+
+```typescript onError callback
+new Job(client, {
+  id: "custom-error-handling",
+  name: "Custom Error handling",
+  version: "0.1.1",
+  trigger: eventTrigger({ name: "test" }),
+  run: async (payload, io, ctx) => {
+    //runTask
+    const response = await io.runTask(
+      "on-error-test",
+      { name: "On Error" },
+      async () => {
+        // Only throw error 50% of the time
+        if (Math.random() > 0.5) {
+          throw new Error("Something went wrong");
+        }
+      },
+      onError: (error, task) => {
+        //retry the task in 5 minutes
+        return {
+          retryAt: new Date(Date.now() + 5 * 60 * 1000),
+          error: new Error("Something went REALLY wrong")
+        };
       }
     );
 
