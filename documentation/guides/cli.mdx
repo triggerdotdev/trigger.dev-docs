@@ -17,7 +17,11 @@ The CLI makes it easy to set up and run your project on Trigger.dev. It's separa
 
   During execution, this command requires some configuration parameters. Detailed information on these parameters can be found in the next section. It's important to note that the `init` command is typically executed only once per project.
 
+![Your first Job](/images/cli-init.gif)
+
 2. The `dev` command. Once you're running your Next.js project locally, you can then execute the `dev` CLI command to run Trigger.dev locally. You should run this command every time you want to use Trigger.dev locally.
+
+![Your first Job](/images/cli-dev.gif)
 
 ## 1. Set up your Project
 
@@ -69,16 +73,21 @@ yarn @trigger.dev/cli@latest init
 </Accordion>
 
 <Accordion title="Enter a unique ID for your endpoint">
-  Enter a custom ID or use the default by hitting enter.
-</Accordion>
-
-<Accordion title="What's the URL of your Next.js project?">
-  Description for Next.js URL
+  Enter a custom ID or use the default by hitting enter. You can learn more
+  about endpoints
+  [here](/documentation/concepts/environments-endpoints#endpoints).
 </Accordion>
 
 </AccordionGroup>
 
 ## 2. Local development (dev)
+
+<Warning>
+  Make sure your Next.js site is running locally before continuing. You must
+  also leave this `dev` terminal command running while you develop.
+</Warning>
+
+In a **new terminal window or tab** run:
 
 <CodeGroup>
 
@@ -95,5 +104,8 @@ yarn @trigger.dev/cli@latest dev
 ```
 
 </CodeGroup>
-
-Show accordion for all the options
+<br />
+<Note>
+  You can optionally pass the port if you're not running on 3000 by adding
+  `--port 3001` to the end
+</Note>
