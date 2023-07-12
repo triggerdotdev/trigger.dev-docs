@@ -7,23 +7,17 @@ description: "How to use the CLI"
 
 If you're setting up your project for the first time, we recommend using the CLI by following the [Quickstart guide](/documentation/quickstart).
 
-The CLI makes it easy to set up and run your project on Trigger.dev. It's separated into 2 commands:
+## init Command
 
-1. The `init` command incorporates Trigger.dev into your Next.js project. It performs the following functions:
+The `init` command incorporates Trigger.dev into your Next.js project. It performs the following functions:
 
 - Adds Trigger.dev to the project.
 - Creates a new route.
 - Generates an example file.
 
-  During execution, this command requires some configuration parameters. Detailed information on these parameters can be found in the next section. It's important to note that the `init` command is typically executed only once per project.
+  During execution, this command requires some configuration parameters. Detailed information on these parameters can be found in the next section.
 
 ![Your first Job](/images/cli-init.gif)
-
-2. The `dev` command. Once you're running your Next.js project locally, you can then execute the `dev` CLI command to run Trigger.dev locally. You should run this command every time you want to use Trigger.dev locally.
-
-![Your first Job](/images/cli-dev.gif)
-
-## 1. Set up your Project
 
 Run this `init` command in a terminal window to setup your project with Trigger.dev
 
@@ -80,7 +74,11 @@ yarn @trigger.dev/cli@latest init
 
 </AccordionGroup>
 
-## 2. Local development (dev)
+## dev Command
+
+Once you're running your Next.js project locally, you can then execute the `dev` CLI command to run Trigger.dev locally. You should run this command every time you want to use Trigger.dev locally.
+
+![Your first Job](/images/cli-dev.gif)
 
 <Warning>
   Make sure your Next.js site is running locally before continuing. You must
