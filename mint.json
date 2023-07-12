@@ -95,6 +95,7 @@
             "documentation/guides/platforms/express"
           ]
         },
+        "documentation/guides/cli",
         "documentation/guides/create-a-job",
         "documentation/guides/running-jobs",
         {
