@@ -102,8 +102,17 @@ A Task is a resumable unit of a Run that can be retried, resumed and is logged. 
 </ResponseField>
 
 <ResponseField name="callback" type="function" required>
-  The callback that will be called when the Task is run. The callback receives
+  The callback that will be called when the Task is run, this is where your logic should go. The callback receives
   the Task and the IO as parameters.
+
+  <Expandable title="arguments">
+    <ResponseField name="task" type="Task">
+      The Task that is running. It has some useful properties like `idempotencyKey` and `attempts`.
+    </ResponseField>
+    <ResponseField name="io" type="IO">
+      [IO](/sdk/io/overview) holds integrations and useful actions you can perform.
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
 <ResponseField name="onError" type="function">
