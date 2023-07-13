@@ -3,14 +3,14 @@ title: "API Keys and Personal Access Tokens"
 description: "Lots of APIs use API Keys or Personal Access Tokens to authenticate. This guide will show you how to use them."
 ---
 
-## 1. Create an integration client
+## 1. Create an Integration client
 
 ```ts
-//1. Import the integration packages you want to use
+//1. Import the Integration packages you want to use
 import { Github } from "@trigger.dev/github";
 import { OpenAI } from "@trigger.dev/openai";
 
-//2. Create a new instance of the integration client
+//2. Create a new instance of the Integration client
 // GitHub uses personal access tokens so the param is called `token`
 const github = new Github({
   //this is used to identify the connection
@@ -36,11 +36,11 @@ GITHUB_TOKEN="github_pat_1234567890xxxxxxxxxxxxxxxxxxxx"
 OPENAI_API_KEY="sk-12345678xxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
-## 2. Use the integration client
+## 2. Use the Integration client
 
-There are two way to use integrations in a Job:
+There are two way to use Integrations in a Job:
 
-- You can perform Tasks in the `run` function, by passing the integration client into the `integrations` object.
+- You can perform Tasks in the `run` function, by passing the Integration client into the `integrations` object.
 - You can use webhooks to Trigger a Job.
 
 This example automatically assigns "matt-aitken" to any new issue in the `trigger.dev` repo (lucky him).
@@ -50,16 +50,16 @@ new Job(client, {
   id: "assign-on-issue-opened",
   name: "Assign on Issue Opened",
   version: "0.1.0",
-  //1. If you want to use the integration in the run function, add it here
+  //1. If you want to use the Integration in the run function, add it here
   integrations: { github },
-  //2. If the integration supports webhooks, you can use them here
+  //2. If the Integration supports webhooks, you can use them here
   trigger: github.triggers.repo({
     event: events.onIssueOpened,
     owner: "triggerdotdev",
     repo: "trigger.dev",
   }),
   run: async (payload, io, ctx) => {
-    //3. Because we add `github` to integrations, it comes through to `io.github` here
+    //3. Because we add `github` to Integrations, it comes through to `io.github` here
     const assignee = await io.github.addIssueAssignees("add assignee", {
       owner: payload.repository.owner.login,
       repo: payload.repository.name,
@@ -78,9 +78,9 @@ new Job(client, {
 
 <Snippet file="integration-list.mdx" />
 
-### Connected API Key integration detail page
+### Connected API Key Integration detail page
 
-![An API Key integration](/images/integration-api-key.png)
+![An API Key Integration](/images/integration-api-key.png)
 
 Some useful things on this page
 
@@ -90,7 +90,7 @@ Some useful things on this page
 ## References
 
 <CardGroup cols={2}>
-  <Card title="View integrations" icon="grid-2" href="/integrations">
+  <Card title="View Integrations" icon="grid-2" href="/integrations">
     Trigger.dev integrates with a wide range of services.
   </Card>
 </CardGroup>

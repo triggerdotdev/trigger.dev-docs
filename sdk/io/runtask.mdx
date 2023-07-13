@@ -89,7 +89,7 @@ A Task is a resumable unit of a Run that can be retried, resumed and is logged. 
   </ResponseField>
   <ResponseField name="connectionKey" type="string">
     Allows you to link the Integration connection in the logs. This is handled
-    automatically in integrations.
+    automatically in Integrations.
   </ResponseField>
   <ResponseField name="operation" type="string">
     An operation you want to perform on the Trigger.dev platform, current only
@@ -110,7 +110,7 @@ A Task is a resumable unit of a Run that can be retried, resumed and is logged. 
       The Task that is running. It has some useful properties like `idempotencyKey` and `attempts`.
     </ResponseField>
     <ResponseField name="io" type="IO">
-      [IO](/sdk/io/overview) holds integrations and useful actions you can perform.
+      [IO](/sdk/io/overview) holds Integrations and useful actions you can perform.
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -154,7 +154,7 @@ new Job(client, {
       "create-card",
       { name: "Create card", icon: "github" },
       async () => {
-        //create a project card using the underlying GitHub integration client
+        //create a project card using the underlying GitHub Integration client
         return io.github.client.rest.projects.createCard({
           column_id: 123,
           note: "test",

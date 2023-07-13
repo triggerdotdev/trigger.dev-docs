@@ -1,43 +1,43 @@
 ---
-title: Create an integration
-description: "You can create integrations of your own."
+title: Create an Integration
+description: "You can create Integrations of your own."
 ---
 
-Before creating an integration, make sure to read the [integration overview](/documentation/concepts/integrations) to understand what an integration is and how it works.
+Before creating an Integration, make sure to read the [Integration overview](/documentation/concepts/integrations) to understand what an Integration is and how it works.
 
 What we'll cover in this guide:
 
-- [Creating an integration package](#creating-an-integration-package)
-- [Developing an integration package](#developing-an-integration-package)
-- [Testing an integration package](#testing-an-integration-package)
-- [Publishing an integration package](#publishing-an-integration-package)
+- [Creating an Integration package](#creating-an-integration-package)
+- [Developing an Integration package](#developing-an-integration-package)
+- [Testing an Integration package](#testing-an-integration-package)
+- [Publishing an Integration package](#publishing-an-integration-package)
 
-## Creating an integration package
+## Creating an Integration package
 
-Before you embark on creating an integration, you have to decide where the integration code will be located. You have two options, either in the [Trigger.dev monorepo](https://github.com/triggerdotdev/trigger.dev) and namespaced under the `@trigger.dev` NPM organization, or in a separate repository you control and published independently.
+Before you embark on creating an Integration, you have to decide where the Integration code will be located. You have two options, either in the [Trigger.dev monorepo](https://github.com/triggerdotdev/trigger.dev) and namespaced under the `@trigger.dev` NPM organization, or in a separate repository you control and published independently.
 
 ### In the Trigger.dev monorepo
 
-Before you can create an integration in the Trigger.dev monorepo, you'll need to follow our [contributing guide](https://github.com/triggerdotdev/trigger.dev/blob/main/CONTRIBUTING.md) to get your local environment setup.
+Before you can create an Integration in the Trigger.dev monorepo, you'll need to follow our [contributing guide](https://github.com/triggerdotdev/trigger.dev/blob/main/CONTRIBUTING.md) to get your local environment setup.
 
-Once you've forked the repository and cloned it locally, create a new branch for your integration and prefix it with the `integrations/` namespace. For example, if you were creating an integration for [Stripe](https://stripe.com), you would create a branch named `integrations/stripe`.
+Once you've forked the repository and cloned it locally, create a new branch for your Integration and prefix it with the `integrations/` namespace. For example, if you were creating an Integration for [Stripe](https://stripe.com), you would create a branch named `integrations/stripe`.
 
 ```bash
 git checkout -b integrations/stripe
 ```
 
-Now you are ready to create your integration. We've created a CLI tool to help you scaffold out the integration package. You can run the following command to create a new integration package in the `integrations` directory:
+Now you are ready to create your Integration. We've created a CLI tool to help you scaffold out the Integration package. You can run the following command to create a new Integration package in the `integrations` directory:
 
 ```bash
 npx @trigger.dev/cli create-integration integrations/stripe
 ```
 
-This will ask you a few questions about your integration:
+This will ask you a few questions about your Integration:
 
-1. `What is the name of your integration package?` - This is the name of the NPM package that will be created. It should be prefixed with `@trigger.dev/integration-` and be all lowercase. For example, if you were creating an integration for Stripe, you would enter `@trigger.dev/stripe`.
-2. `What is the name of the npm package of the integration?` - This is the name of the NPM package that the integration will be wrapping. For example, if you were creating an integration for Stripe, you would enter `stripe`.
+1. `What is the name of your Integration package?` - This is the name of the NPM package that will be created. It should be prefixed with `@trigger.dev/integration-` and be all lowercase. For example, if you were creating an Integration for Stripe, you would enter `@trigger.dev/stripe`.
+2. `What is the name of the npm package of the Integration?` - This is the name of the NPM package that the Integration will be wrapping. For example, if you were creating an Integration for Stripe, you would enter `stripe`.
 
-From this point, the CLI will create the integration package for you and install all of the dependencies. It creates the following package structure:
+From this point, the CLI will create the Integration package for you and install all of the dependencies. It creates the following package structure:
 
 ```bash
 integrations
@@ -52,23 +52,23 @@ integrations
     └── tsconfig.json
 ```
 
-Next, head to the [How to develop an integration package](#how-to-develop-an-integration-package) section to learn how to develop your integration.
+Next, head to the [How to develop an Integration package](#how-to-develop-an-integration-package) section to learn how to develop your Integration.
 
 ### In your own repository
 
-You can also create an integration in your own repository and publish it independently. This is useful if you want to keep your integration code separate from the Trigger.dev monorepo. In this case, you should use the `@trigger.dev/cli` to create the integration package in your repository or to start a new one:
+You can also create an Integration in your own repository and publish it independently. This is useful if you want to keep your Integration code separate from the Trigger.dev monorepo. In this case, you should use the `@trigger.dev/cli` to create the Integration package in your repository or to start a new one:
 
 ```bash
 npx @trigger.dev/cli create-integration my-internal-integration
 ```
 
-## Developing an integration package
+## Developing an Integration package
 
-Once you've created your integration package, you can start developing it. In this stage of development, you'll mainly be making changes to the `src/index.ts`, `src/types.ts`, and `src/tasks.ts` files. Below is an explanation of each of the files and their roles:
+Once you've created your Integration package, you can start developing it. In this stage of development, you'll mainly be making changes to the `src/index.ts`, `src/types.ts`, and `src/tasks.ts` files. Below is an explanation of each of the files and their roles:
 
 ### `src/index.ts`
 
-This is the entry point of the integration package. It exports a main "integration" class that implements the `TriggerIntegration` interface. For example, the `@trigger.dev/github` integration exports a `Github` class that implements.
+This is the entry point of the Integration package. It exports a main "integration" class that implements the `TriggerIntegration` interface. For example, the `@trigger.dev/github` Integration exports a `Github` class that implements.
 
 <Tip>
   We're adopting the naming convention of naming the class after the service,
@@ -121,18 +121,18 @@ export class OpenAI
 The `TriggerIntegration` interface requires three properties to be implemented:
 
 <ParamField body="id" type="string" required>
-  The `id` that uniquely identifies the integration. This should always be
+  The `id` that uniquely identifies the Integration. This should always be
   passed through the constructor options.
 </ParamField>
 
 <ParamField body="metadata" type="object" required>
   <Expandable title="properties">
     <ParamField body="id" type="string" required>
-      A unique identifier for the integration. For example, the OpenAI
-      integration has an id of `"openai"`.
+      A unique identifier for the Integration. For example, the OpenAI
+      Integration has an id of `"openai"`.
     </ParamField>
     <ParamField body="name" type="string" required>
-      The name of the integration. For example, the OpenAI integration has a
+      The name of the Integration. For example, the OpenAI Integration has a
       name of `"OpenAI"`.
     </ParamField>
   </Expandable>
@@ -150,7 +150,7 @@ The `TriggerIntegration` interface requires three properties to be implemented:
       Specifies whether the client uses local auth or not. If `true`, the `client` property should contain the underlying SDK client. If `false`, the `client` property should contain a `clientFactory` function that can be used to create new clients using authenticated credentials.
     </ParamField>
     <ParamField body="tasks" type="Record<string, AuthenticatedTask>" required>
-      An object that contains all of the authenticated tasks that are supported by the integration. The keys of the object should be the names of the tasks and the values should be the authenticated tasks. More on authenticated tasks below.
+      An object that contains all of the authenticated tasks that are supported by the Integration. The keys of the object should be the names of the tasks and the values should be the authenticated tasks. More on authenticated tasks below.
     </ParamField>
     <ParamField body="clientFactory" type="function">
       A function that takes in an `auth` object (of type [ConnectionAuth](/sdk/connection-auth)) and returns a new SDK client that is authenticated with the credentials in the `auth` object. This should only be set if `usesLocalAuth` is `false`.
@@ -166,27 +166,27 @@ The `TriggerIntegration` interface requires three properties to be implemented:
 
 ### `src/types.ts`
 
-This file contains all of the types that are used in the integration package. It's a good idea to keep all of the types in this file so that they can be easily imported into both the `src/index.ts` and `src/tasks.ts` files.
+This file contains all of the types that are used in the Integration package. It's a good idea to keep all of the types in this file so that they can be easily imported into both the `src/index.ts` and `src/tasks.ts` files.
 
 You'll want to export the following types from this file
 
-- **SDK Client Type** - Export the type of the underlying SDK client that will be used both in authenticated tasks (more below) and the main integration class.
+- **SDK Client Type** - Export the type of the underlying SDK client that will be used both in authenticated tasks (more below) and the main Integration class.
 - **Authenticated Task Param Types** - Export a single type for each authenticated task input params
 - **Authenticated Task Response Types** - Export a single type for each authenticated task output response
 
 ### `src/tasks.ts`
 
-This file contains all of the authenticated tasks that the integration will support. Tasks are the main way that developers will interact with your integration. They are the actions that developers will be able to perform in their jobs.
+This file contains all of the authenticated tasks that the Integration will support. Tasks are the main way that developers will interact with your Integration. They are the actions that developers will be able to perform in their jobs.
 
 For more about how tasks workd, see the [tasks documentation](/documentation/concepts/tasks).
 
 ### Authenticated tasks
 
-Authenticated tasks are the backbone of an integration and so we're going to cover them in more detail before moving on the main integration class.
+Authenticated tasks are the backbone of an Integration and so we're going to cover them in more detail before moving on the main Integration class.
 
 Authenticated tasks are a specially crafted object that allows the `@trigger.dev/sdk` to run the task seeded with an authenticated SDK client.
 
-For example, here is the `getForm` authenticated task defined in the `@trigger.dev/typeform` integration package:
+For example, here is the `getForm` authenticated task defined in the `@trigger.dev/typeform` Integration package:
 
 <CodeGroup>
 
@@ -348,7 +348,7 @@ const OpenAIErrorSchema = z.object({
 
 </CodeGroup>
 
-You can also use the `onError` function to specify a specific time the task should be retried. The `@trigger.dev/github` integration uses this to retry rate-limited requests:
+You can also use the `onError` function to specify a specific time the task should be retried. The `@trigger.dev/github` Integration uses this to retry rate-limited requests:
 
 ```ts
 function isRequestError(error: unknown): error is RequestError {
@@ -379,13 +379,13 @@ function onError(error: unknown) {
 
 ### Triggers
 
-<Note>The guide on creating integration triggers is coming soon</Note>
+<Note>The guide on creating Integration triggers is coming soon</Note>
 
-## Testing an integration package
+## Testing an Integration package
 
 <Note>This section is coming soon</Note>
 
-## Publishing an integration package
+## Publishing an Integration package
 
 <Note>This section is coming soon</Note>
 
