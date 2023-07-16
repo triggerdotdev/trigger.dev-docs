@@ -130,6 +130,7 @@
           "group": "Self hosting",
           "pages": [
             "documentation/guides/self-hosting",
+            "documentation/guides/deploy-to-flyio",
             "documentation/guides/tunneling-platform"
           ]
         },
