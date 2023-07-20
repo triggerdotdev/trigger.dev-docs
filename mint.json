@@ -131,6 +131,7 @@
           "pages": [
             "documentation/guides/self-hosting",
             "documentation/guides/deploy-to-flyio",
+            "documentation/guides/deploy-to-render",
             "documentation/guides/tunneling-platform"
           ]
         },
