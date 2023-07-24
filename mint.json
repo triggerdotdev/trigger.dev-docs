@@ -52,7 +52,11 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": ["documentation/introduction", "documentation/quickstart"]
+      "pages": [
+        "documentation/introduction",
+        "documentation/quickstart",
+        "documentation/guides/video-walkthrough"
+      ]
     },
     {
       "group": "Concepts",
@@ -96,7 +100,7 @@
             "documentation/guides/platforms/express"
           ]
         },
-        "documentation/guides/video-walkthrough",
+
         "documentation/guides/cli",
         "documentation/guides/create-a-job",
         "documentation/guides/running-jobs",
