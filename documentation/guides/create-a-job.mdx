@@ -1,43 +1,337 @@
 ---
-title: "Create a Job"
-description: "How to create a Job"
+title: "Create a Job in code"
+description: "How to create a Job in code and run it locally"
 ---
 
-Jobs are the core of the system. They allow you to run code when some event occurs. It might be worth first reading about [Jobs](/documentation/concepts/jobs), [Runs](/documentation/concepts/runs), [Triggers](/documentation/concepts/triggers/introduction) and [Tasks](/documentation/concepts/tasks).
+Jobs are the core of the system. They allow you to run code when some event occurs. They are built using a combination of Triggers and Tasks.
 
-If you'd like to view a load of example Jobs you can [view the examples](/examples).
+### 1. Make sure your Project is set up with Trigger.dev
 
-### 1. Make sure your Project is setup
+You need to set up your Project first, we recommend [using the CLI](/documentation/quickstart) to do this.
 
-You need to setup your Project first, we recommend [using the CLI](/documentation/quickstart) to do this.
+### 2. Set up any Integrations you need
 
-### 2. Setup Integrations
-
-If you want to use Integrations (to subscribe to webhooks or easily perform a Task with an API) you will need to [connect them](/documentation/guides/using-integrations).
+If you want to use our Integrations (to subscribe to webhooks or easily perform a Task with an API) you will need to [connect them](/documentation/guides/using-integrations).
 
 ### 3. Choose a Trigger
 
-Triggers are what cause a Job to run.
+This is what starts the Job running. You can choose from a number of different Triggers:
 
-Select a Trigger
+<Tabs>
+<Tab title="Scheduled">
+        Run a Job on a repeating schedule:
+```ts
+// Inside your Job function
+...
+ trigger: intervalTrigger({
+    seconds: 60,
+  }),
+...
+```
+Using CRON syntax:
+```ts
+// Inside your Job function
+ ...
+ trigger: cronTrigger({
+    cron: "30 14 * * 1",
+  }),
+...
+```
 
-- [Scheduled](/documentation/concepts/triggers/scheduled)
-- [Webhook](/documentation/concepts/triggers/webhooks)
-- [Event](/documentation/concepts/triggers/events)
-- [Dynamic](/documentation/concepts/triggers/dynamic)
+  </Tab>
+<Tab title="Webhook">
 
-### 4. Write your Job code
+Start your Jobs in realtime when events happen in APIs
 
-The body of your Job code can use a combination of regular code and [Tasks](/documentation/concepts/tasks).
+```ts
+// Inside your Job function
+...
+//E.g. When a GitHub issue is modified on the triggerdotdev/trigger.dev repo
+trigger: github.triggers.repo({
+event: events.onIssue,
+owner: "triggerdotdev",
+repo: "trigger.dev",
+}),
+...
+```
+
+</Tab>
+  <Tab title="Event">
+      Run your Job when you send events with data.
+      
+``` ts
+// Inside your Job function
+...
+//E.g. when a user is created in your app (you send the event)
+ trigger: eventTrigger({
+    name: "user.created",
+    schema: z.object({
+      name: z.string(),
+      email: z.string(),
+      paidPlan: z.boolean(),
+    }),
+    ...
+```
+
+  </Tab>
+    <Tab title="Dynamic">
+          Create Triggers and Schedules with dynamic settings. These are an advanced feature that allows you to attach dynamic triggers to a Job.
+          
+**DynamicSchedule**
+
+```ts
+//1. create a DynamicSchedule
+const dynamicSchedule = new DynamicSchedule(client, {
+  id: "dynamicinterval",
+});
+
+//2. create a Job that is attached to the dynamic schedule
+new Job(client, {
+  id: "user-dynamicinterval",
+  name: "User Dynamic Interval",
+  version: "0.1.1",
+  //3. set the DynamicSchedule as the Trigger
+  trigger: dynamicSchedule,
+  run: async (payload, io, ctx) => {
+    await io.logger.info("The userId is ", ctx.source.id);
+  },
+});
+
+//4. Register the DynamicSchedule anywhere in your app
+async function registerUserCronJob(userId: string, userSchedule: string) {
+  //use the userId as the id for the DynamicSchedule
+  //so it comes through to run() in the context source.id
+  await dynamicSchedule.register(userId, {
+    type: "cron",
+    options: {
+      cron: userSchedule,
+    },
+  });
+}
+
+//5. Register inside other Jobs
+new Job(client, {
+  id: "register-dynamicinterval",
+  name: "Register Dynamic Interval",
+  version: "0.1.1",
+  trigger: eventTrigger({
+    name: "dynamic.interval",
+    schema: z.object({
+      userId: z.string(),
+      seconds: z.number().int().positive(),
+    }),
+  }),
+  run: async (payload, io, ctx) => {
+    //6. Register the DynamicSchedule
+    await io.registerInterval("📆", dynamicSchedule, payload.userId, {
+      seconds: payload.seconds,
+    });
+
+    await io.wait("wait", 60);
+
+    //7. Unregister the DynamicSchedule if you want
+    await io.unregisterInterval("❌📆", dynamicSchedule, payload.id);
+  },
+});
+```
+
+**DynamicTrigger**
+
+```ts
+//1. create a DynamicTrigger
+const dynamicOnIssueOpenedTrigger = new DynamicTrigger(client, {
+  id: "github-issue-opened",
+  event: events.onIssueOpened,
+  source: github.sources.repo,
+});
+
+//2. create a Job that is attached to the dynamic trigger
+new Job(client, {
+  id: "listen-for-dynamic-trigger",
+  name: "Listen for dynamic trigger",
+  version: "0.1.1",
+  trigger: dynamicOnIssueOpenedTrigger,
+  integrations: {
+    slack,
+  },
+  run: async (payload, io, ctx) => {
+    await io.slack.postMessage("Slack 📝", {
+      text: `New Issue opened on repo: ${
+        payload.issue.html_url
+      }. \n\n${JSON.stringify(ctx)}`,
+      channel: "C04GWUTDC3W",
+    });
+  },
+});
+
+//3. Register the DynamicTrigger anywhere in your app
+async function registerRepo(owner: string, repo: string) {
+  //the first param (key) should be unique
+  await dynamicOnIssueOpenedTrigger.register(`${owner}/${repo}`, {
+    owner,
+    repo,
+  });
+}
+
+//4. Register inside other Jobs
+new Job(client, {
+  id: "new-repo",
+  name: "New repo",
+  version: "0.1.1",
+  //5. when a new repo is created in your org
+  trigger: github.triggers.org({
+    event: events.onNewRepository,
+    org: "triggerdotdev",
+  }),
+  run: async (payload, io, ctx) => {
+    //6. Register the dynamic trigger so you get notified when an issue is opened
+    return await io.registerTrigger(
+      "register-repo",
+      dynamicOnIssueOpenedTrigger,
+      payload.repository.name,
+      {
+        owner: payload.repository.owner.login,
+        repo: payload.repository.name,
+      }
+    );
+  },
+});
+```
+
+</Tab>
+</Tabs>
+
+### 4. Create the Job Tasks
+
+Once the Job has been triggered, you can string together multiple Tasks in any order you want. You can use a combination of regular code and [Tasks](/documentation/concepts/tasks).
+
+| Task   | Description               | Task code                                                                                                    |
+| ------ | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Delay  | Wait for a period of time | `await io.wait("wait", 60);`                                                                                 |
+| Log    | Log a message             | `await io.logger.info("Hello");`                                                                             |
+| Email  | Send an Email             | `await io.email.send("Email 📧", { to: "hello@acme.com" });`                                                 |
+| HTTP   | Make an HTTP request      | `await io.http.get("HTTP 🌐", { url: "https://trigger.dev" });`                                              |
+| Shell  | Run a shell command       | `await io.shell.run("Shell 🐚", { command: "ls -la" });`                                                     |
+| Code   | Run your own code         | `await io.code.run("My Code", { code: "console.log('Hello')" });`                                            |
+| Slack  | Send a Slack message      | `await io.slack.postMessage("Slack 📝", { text: "Hello" });`                                                 |
+| GitHub | Create a GitHub issue     | `await io.github.createIssue("GitHub 🐙", { owner: "triggerdotdev", repo: "trigger.dev", title: "Hello" });` |
+| OpenAI | Send a request to OpenAI  | `await io.openai.complete("OpenAI 🧠", { prompt: "Hello" });`                                                |
+
+These are just a few examples of Tasks. To view all of the possible Tasks using our integrations, browse our [Integrations section](/integrations/).
+
+Here are two examples Jobs that use Tasks to show the structure:
+
+<Accordion title="Job: Create a joke using OpenAI every 60 seconds">
+  ```ts
+new Job(client, {
+  id: "openai-tasks",
+  name: "OpenAI Tasks",
+  version: "0.0.1",
+  trigger: intervalTrigger({
+    seconds: 60,
+      schema: z.object({}),
+  }),
+  integrations: {
+    openai,
+  },
+  run: async (payload, io, ctx) => {
+    const response = await io.openai.backgroundCreateChatCompletion(
+      "background-chat-completion",
+      {
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            content: "Create a good programming joke about background jobs",
+          },
+        ],
+      }
+    );
+
+    await io.logger.info("choices", response.choices);
+
+},
+});
+
+````
+</Accordion>
+<Accordion title="Job: Post a message to Slack">
+  ```ts
+new Job(client, {
+  id: "post-to-slack",
+  name: "Post a message to Slack",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "slack.test",
+    schema: z.object({}),
+  }),
+  integrations: {
+    slack,
+  },
+  run: async (payload, io, ctx) => {
+    const response = await io.slack.postMessage("post message", {
+      channel: "C04GWUTDC3W",
+      text: "My first Slack message",
+    });
+  },
+});
+```
+</Accordion>
+
+
+
+### 4. Run your Job
+
+Start your Job running locally. This will allow you to test it out and make sure it's working as expected.
+
+While your app is running, open a **new terminal window or tab** and run:
+
+<CodeGroup>
+
+```bash npm
+npx @trigger.dev/cli@latest dev
+````
+
+```bash pnpm
+pnpm dlx @trigger.dev/cli@latest dev
+```
+
+```bash yarn
+yarn dlx @trigger.dev/cli@latest dev
+```
+
+</CodeGroup>
 
 ### 5. Test your Job
 
-You can [start a test Run from the dashboard](/documentation/guides/testing-jobs).
+Once you have successfully connected to Trigger.dev you can test your Job in the web app.
 
-## References
+<Accordion title="Finding the Test page">
+  There's a tab on the Job page called **Test**. Or you can click the "Test"
+  button in the top right of the page. ![Navigating to the Test
+  page](/images/test-click.png)
+</Accordion>
+
+#### Your options when Testing
+
+![Your options on the Test page](/images/test-annotated.png)
+
+1. Select the environment you'd like the test to run against.
+2. Some Triggers provide example payloads that you can select from. This will populate the code editor below.
+3. When you're happy with the payload, click **Run test**.
+
+---
+
+## Example Jobs
+
+We recommend browsing our examples for further information on how to structure Jobs.
+
+In the examples repo you'll find Jobs using different Triggers, Integrations and Tasks.
 
 <CardGroup cols={2}>
   <Card title="Examples" icon="slot-machine" href="/examples">
     View a load of examples of Jobs
   </Card>
 </CardGroup>
+
+If you'd like to view a load of example Jobs you can [view the examples](/examples).
