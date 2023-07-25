@@ -107,7 +107,7 @@ This is what kicks-off a Job. There are a few different types of Triggers you ca
   </Tab>
 </Tabs>
 
-### 2. Create the Job Tasks
+### 3. Create the Job Tasks
 
 > A Task is a resumable unit of a Run that can be retried, resumed and is logged.
 
@@ -133,17 +133,76 @@ For a full list of built-in Tasks, see the [io SDK reference](/sdk/io).
 
 **Integration Task examples:**
 
-<Note>
+<Info>
   To use our integrations you will need to set them up in the app first. Our
   guide is [here](/documentation/guides/using-integrations).
-</Note>
+</Info>
 
-| Task                                                            | Description                                                          | Task code                                                                                                                                                                                                      |
-| --------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [OpenAI: backgroundCreateCompletion](/integrations/apis/openai) | Generates text completions in a conversational context using OpenAI. | `await io.openai.backgroundCreateChatCompletion( "background-chat-completion", { model: "gpt-3.5-turbo", messages: [ { role: "user", content: "Create a good programming joke about background jobs", },],});` |
-| [GitHub: addIssueLabels](/integrations/apis/github-tasks)       | Add a custom label to a GitHub issue                                 | `await io.github.addIssueLabels("add label", {owner: payload.repository.owner.login, repo: payload.repository.name, issueNumber: payload.issue.number, labels: ["bug"],});`                                    |
-| [Resend: sendEmail](/integrations/apis/resend)                  | Send an email using Resend                                           | `await io.resend.sendEmail("send-email", { to: payload.to, subject: payload.subject, text: payload.text, from: "Trigger.dev <hello@email.trigger.dev>", });`                                                   |
-| [Slack: postMessage](/integrations/apis/slack)                  | Post a message to a Slack channel                                    | `await io.slack.postMessage("post message", { channel: "C04GWUTDC3W", text: "My first Slack message", });`                                                                                                     |
+<AccordionGroup>
+<Accordion title="OpenAI" description="Generate text completions in a conversational context.">
+
+**Task:** [backgroundCreateCompletion](/integrations/apis/openai)
+
+```ts
+await io.openai.backgroundCreateChatCompletion("background-chat-completion", {
+  model: "gpt-3.5-turbo",
+  messages: [
+    {
+      role: "user",
+      content: "Create a good programming joke about background jobs",
+    },
+  ],
+});
+```
+
+View more OpenAI tasks [here](/integrations/apis/openai).
+
+</Accordion>
+<Accordion title="GitHub" description="Add a custom label to a GitHub issue.">
+
+**Task:** [addIssueLabels](/integrations/apis/github-tasks)
+
+```ts
+await io.github.addIssueLabels("add label", {
+  owner: payload.repository.owner.login,
+  repo: payload.repository.name,
+  issueNumber: payload.issue.number,
+  labels: ["bug"],
+});
+```
+
+View more GitHub tasks [here](/integrations/apis/github-tasks).
+
+</Accordion>
+<Accordion title="Resend" description="Send an email using Resend.">
+
+**Task:** [sendEmail](/integrations/apis/resend)
+
+```ts
+await io.resend.sendEmail("send-email", {
+  to: payload.to,
+  subject: payload.subject,
+  text: payload.text,
+  from: "Trigger.dev <hello@email.trigger.dev>",
+});
+```
+
+</Accordion>
+<Accordion title="Slack" description="Post a message to a Slack channel.">
+
+**Task:** [postMessage](/integrations/apis/slack)
+
+```ts
+await io.slack.postMessage("post message", {
+  channel: "C04GWUTDC3W",
+  text: "My first Slack message",
+});
+```
+
+View more Slack tasks [here](/integrations/apis/slack).
+
+</Accordion>
+</AccordionGroup>
 
 These are just a few examples of Integration Tasks. For many more, browse our [Integrations section](/integrations/).
 
@@ -185,7 +244,7 @@ If you are having trouble getting your job running, please reach out to us and w
 
 ## Next steps
 
-We recommend exploring all of the below sections to get a great understanding of how to use Trigger.dev.
+We recommend exploring all of the below sections to fully understand how to create and run Jobs using Trigger.dev.
 
 <CardGroup cols={2}>
   <Card
