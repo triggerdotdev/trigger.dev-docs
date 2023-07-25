@@ -45,7 +45,7 @@
       "url": "sdk"
     },
     {
-      "name": "Examples",
+      "name": "Example Jobs",
       "url": "examples"
     }
   ],
@@ -55,6 +55,7 @@
       "pages": [
         "documentation/introduction",
         "documentation/quickstart",
+        "documentation/guides/create-a-job",
         "documentation/guides/video-walkthrough"
       ]
     },
@@ -102,7 +103,6 @@
         },
 
         "documentation/guides/cli",
-        "documentation/guides/create-a-job",
         "documentation/guides/running-jobs",
         {
           "group": "Using the Dashboard",
