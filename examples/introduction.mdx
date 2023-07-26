@@ -1,17 +1,24 @@
 ---
-title: Examples Repository
-description: "Sometimes the best way to learn is to view a load of examples."
+title: Example Jobs
+description: "An ever-growing list of example Jobs which you can use to get started with Trigger.dev."
 ---
 
-We have an [examples repo](https://github.com/triggerdotdev/examples) that we add to all the time. It's a great place to start if you're looking for inspiration.
+<Info>
+  If you are using integrations, you'll need set up authentication either using
+  OAuth or personal access tokens. You can find out how to do that in the
+  [integrations section](/integrations).
+</Info>
 
-Alternatively you can jump directly to an example using the table below:
+| Job (code in link)                                                                                                                              | Description                                                                              | Integrations used                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
+| [Basic delay](https://github.com/triggerdotdev/examples/blob/main/delays/src/jobs/delayJob.ts)                                                  | Logs a message to the console, waits for 5 minutes, and then logs another message.       | N/A                                 |
+| [Basic interval](https://github.com/triggerdotdev/examples/blob/main/scheduled/src/jobs/interval.ts)                                            | This Job will run every 60 seconds, starting 60 seconds after this Job is first indexed. | N/A                                 |
+| [Cron scheduled interval](https://github.com/triggerdotdev/examples/blob/main/scheduled/src/jobs/cronScheduled.ts)                              | A scheduled Job which runs at 2:30pm every Monday.                                       | N/A                                 |
+| [Tell me a joke using OpenAI](https://github.com/triggerdotdev/examples/blob/main/openai/src/jobs/tellMeAJoke.ts)                               | Generates a random joke using OpenAI GPT 3.5.                                            | [OpenAI](/integrations/apis/openai) |
+| [Generate an image using OpenAI](https://github.com/triggerdotdev/examples/blob/main/openai/src/jobs/generateHedgehogImages.ts)                 | Generates a random image of a hedgehog using OpenAI DALL-E.                              | [OpenAI](/integrations/apis/openai) |
+| [Add a custom label to a GitHub issue when it is created](https://github.com/triggerdotdev/examples/blob/main/github/src/jobs/onIssueOpened.ts) | When a new GitHub issue is opened it adds a "Bug" label to it.                           | [GitHub](/integrations/apis/github) |
+| [GitHub new star alert](https://github.com/triggerdotdev/examples/blob/main/github/src/jobs/newStarAlert.ts)                                    | When a repo is starred a message is logged with the new Stargazers count.                | [GitHub](/integrations/apis/github) |
+| [Send a Slack message when an event is received](https://github.com/triggerdotdev/examples/blob/main/slack/src/jobs/sendSlackMessage.ts)        | Sends a Slack message to a specific channel when an event is received.                   | [Slack](/integrations/apis/slack)   |
+| [Send an email using Resend](https://github.com/triggerdotdev/examples/blob/main/resend/src/jobs/resendBasicEmail.ts)                           | Send a basic email using Resend                                                          | [Resend](/integrations/apis/resend) |
 
-| Name                                                                       | Description                                                                                                          | Integrations |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------ |
-| [Delays](https://github.com/triggerdotdev/examples/tree/main/delays)       | Using delays inside Jobs                                                                                             | N/A          |
-| [GitHub](https://github.com/triggerdotdev/examples/tree/main/github)       | When a new GitHub issue is opened it adds a "Bug" label to it. When a repo is starred it tells you the total number. | GitHub       |
-| [OpenAI](https://github.com/triggerdotdev/examples/tree/main/openai)       | Generate images and jokes from a prompt                                                                              | OpenAI       |
-| [Resend](https://github.com/triggerdotdev/examples/tree/main/resend)       | Sends an email by submitting a form in the Next.js app                                                               | Resend       |
-| [Scheduled](https://github.com/triggerdotdev/examples/tree/main/scheduled) | Interval and cron scheduled Jobs                                                                                     | N/A          |
-| [Slack](https://github.com/triggerdotdev/examples/tree/main/slack)         | Sends a Slack message when an event is received                                                                      | Slack        |
+If you have any ideas for Jobs you would like to build, you can fill in the [Job request form](https://bcymafitv0e.typeform.com/to/YLUKy9my#source=example-jobs-docs).
