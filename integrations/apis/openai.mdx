@@ -2,9 +2,13 @@
 title: Introduction
 ---
 
+The integration of OpenAI and Trigger.dev provides a seamless solution for handling long-running tasks in a serverless context. By leveraging background tasks, you can run extensive OpenAI completions without worrying about serverless function time restrictions.
+
 <Snippet file="integration-getting-started.mdx" />
 
 ## Installation
+
+Choose your preferred package manager and install the `@trigger.dev/openai` package.
 
 <CodeGroup>
 
@@ -24,7 +28,7 @@ yarn add @trigger.dev/openai@latest
 
 ## Authentication
 
-OpenAI supports API Keys
+OpenAI supports API Key based authentication. You can sign up for OpenAI and get your API key which will be used to authenticate your requests to OpenAI API.
 
 ```ts
 import { OpenAI } from "@trigger.dev/openai";
@@ -35,7 +39,11 @@ const openai = new OpenAI({
 });
 ```
 
-## Example
+## Example Jobs
+
+Let's take a look at job below, it demonstrates how to utilize background tasks to handle long-running OpenAI completions on a serverless architecture, offloading the workload to Trigger.dev.
+
+The "OpenAI Tasks" job uses the backgroundCreateChatCompletion task to generate a response based on a provided message. The generation might take time depending on the complexity of the message, making it a good candidate for a background task.
 
 ```ts
 new Job(client, {
