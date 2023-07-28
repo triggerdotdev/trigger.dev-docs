@@ -273,9 +273,7 @@
     },
     {
       "group": "Overview",
-      "pages": [
-        "examples/introduction"
-      ]
+      "pages": ["examples/introduction", "examples/examples-repository"]
     }
   ],
   "footerSocials": {
