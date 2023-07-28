@@ -112,6 +112,25 @@ await io.slack.runTask(
 
 View the [runTask](/sdk/io/runtask#parameters) reference for more information.
 
+## Using outside of Jobs
+
+If you want to use integrations that support "local auth" only (e.g. API keys, like Stripe and Supabase) outside of a Job you can use the `.native` property on the integration to get direct access to the client. For example:
+
+```ts stripe.ts
+import { Stripe } from "@trigger.dev/stripe";
+
+const stripe = new Stripe({
+  id: "stripe",
+  apiKey: process.env.STRIPE_SECRET_KEY!
+});
+
+async function createCustomer() {
+  await stripe.native.customers.create({
+    // ... customer attributes go here
+  });
+}
+```
+
 ## Using for Triggers
 
 Some integrations provide triggers that you can use to start a Job. For example, the GitHub integration provides a `push` trigger that will start a Job when a new commit is pushed to a repository:
