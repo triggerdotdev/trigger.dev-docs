@@ -41,7 +41,7 @@
       "url": "integrations"
     },
     {
-      "name": "SDK Reference",
+      "name": "Reference",
       "url": "sdk"
     },
     {
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "group": "SDK reference",
+      "group": "SDK",
       "pages": [
         "sdk/introduction",
         {
@@ -251,6 +251,14 @@
         "sdk/connection-auth",
         "sdk/istriggererror",
         "sdk/redactstring"
+      ]
+    },
+    {
+      "group": "React SDK",
+      "pages": [
+        "sdk/react/introduction",
+        "sdk/react/triggerprovider",
+        "sdk/react/useeventdetails"
       ]
     },
     {
