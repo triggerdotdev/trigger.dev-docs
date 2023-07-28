@@ -258,7 +258,8 @@
       "pages": [
         "sdk/react/introduction",
         "sdk/react/triggerprovider",
-        "sdk/react/useeventdetails"
+        "sdk/react/useeventdetails",
+        "sdk/react/useeventrundetails"
       ]
     },
     {
