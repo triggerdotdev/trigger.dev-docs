@@ -47,9 +47,6 @@ A Task is a resumable unit of a Run that can be retried, resumed and is logged. 
     company in lowercase, e.g. "github". Or any icon name that [Font
     Awesome](https://fontawesome.com/icons) supports.
   </ResponseField>
-  <ResponseField name="displayKey" type="string">
-    The key for the Task that you want to appear in the logs.
-  </ResponseField>
   <ResponseField name="description" type="string">
     A description of the Task.
   </ResponseField>
@@ -86,17 +83,6 @@ A Task is a resumable unit of a Run that can be retried, resumed and is logged. 
       </ResponseField>
     </Expandable>
 
-  </ResponseField>
-  <ResponseField name="connectionKey" type="string">
-    Allows you to link the Integration connection in the logs. This is handled
-    automatically in Integrations.
-  </ResponseField>
-  <ResponseField name="operation" type="string">
-    An operation you want to perform on the Trigger.dev platform, current only
-    "fetch" is supported. If you wish to `fetch` use [io.backgroundFetch()](/sdk/io/backgroundfetch) instead.
-  </ResponseField>
-  <ResponseField name="noop" type="boolean">
-    A No Operation means that the code won't be executed. This is used internally to implement features like [io.wait()](/sdk/io/wait).
   </ResponseField>
 </Expandable>
 </ResponseField>
