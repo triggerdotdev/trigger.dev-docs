@@ -259,7 +259,8 @@
         "sdk/react/introduction",
         "sdk/react/triggerprovider",
         "sdk/react/useeventdetails",
-        "sdk/react/useeventrundetails"
+        "sdk/react/useeventrundetails",
+        "sdk/react/userundetails"
       ]
     },
     {
