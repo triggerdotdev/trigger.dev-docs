@@ -3,11 +3,7 @@ title: "TriggerProvider"
 description: "The `TriggerProvider` component allows any hooks lower in the React hierarchy to connect to the Trigger.dev API."
 ---
 
-<Note>
-  If you're using React Server Components you must create a Client component
-  file with `"use client";` at the top of the file, and use the TriggerProvider
-  in there. See the example usage on this page.
-</Note>
+Ensure this component is above any Trigger.dev hooks in the React component tree.
 
 ## Parameters
 
@@ -22,26 +18,11 @@ description: "The `TriggerProvider` component allows any hooks lower in the Reac
 
 <RequestExample>
 
-```typescript components/Provider.tsx
-"use client";
-
+```typescript app/layout.tsx
 import { TriggerProvider } from "@trigger.dev/react";
 
-export function Provider({ children }: { children: React.ReactNode }) {
-  return (
-    <TriggerProvider
-      publicApiKey={process.env.NEXT_PUBLIC_TRIGGER_API_KEY ?? ""}
-      apiUrl={process.env.NEXT_PUBLIC_TRIGGER_API_URL}
-    >
-      {children}
-    </TriggerProvider>
-  );
-}
-```
-
-```typescript app/layout.tsx
-import { Providers } from "./components/Providers";
-
+//you don't have to put TriggerProvider in layout.tsx,
+//the hooks need this to be above them in the hierarchy
 export default function RootLayout({
   children,
 }: {
@@ -50,7 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <TriggerProvider
+          publicApiKey={process.env.NEXT_PUBLIC_TRIGGER_API_KEY ?? ""}
+          apiUrl={process.env.NEXT_PUBLIC_TRIGGER_API_URL}
+        >
+          {children}
+        </TriggerProvider>
       </body>
     </html>
   );
