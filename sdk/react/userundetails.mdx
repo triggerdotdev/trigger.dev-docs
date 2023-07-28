@@ -8,11 +8,11 @@ This hook will automatically update until the run has either completed or failed
 There are a couple of ways you can get a runId to pass in:
 
 - In the frontend you can get the runId from the `useEventDetails()` hook. Although if you want the first run triggered by an event, we suggest you use [useEventRunDetails()](/sdk/react/useeventrundetails).
-- From the backend you can get the latest runs for a Job using the [client.getRuns()](/sdk/getruns) method. This will return an array of runs, including their ids. You can then pass an id to your frontend to display the live status.
+- From the backend you can get the latest runs for a Job using the [client.getRuns()](/sdk/triggerclient/instancemethods/getruns) method. This will return an array of runs, including their ids. You can then pass an id to your frontend to display the live status.
 
 <Note>
   You can get the full status of a Run from the backend using the
-  [client.getRun()](/sdk/getrun) method.
+  [client.getRun()](/sdk/triggerclient/instancemethods/getrun) method.
 </Note>
 
 <Snippet file="react-query-note.mdx" />
