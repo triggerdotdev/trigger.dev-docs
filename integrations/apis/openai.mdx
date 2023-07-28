@@ -2,9 +2,17 @@
 title: Introduction
 ---
 
+Trigger.dev provides seamless integration with OpenAI, enabling developers to harness the power of AI 
+language models in their serverless applications. With Trigger.dev's background tasks, long-running 
+OpenAI completions become possible, even within the constraints of serverless timeouts.
+
 <Snippet file="integration-getting-started.mdx" />
 
 ## Installation
+
+To get started with the OpenAI integration on Trigger.dev, you need to install the @trigger.dev/openai package. 
+You can do this using npm, pnpm, or yarn:
+
 
 <CodeGroup>
 
@@ -24,7 +32,8 @@ yarn add @trigger.dev/openai@latest
 
 ## Authentication
 
-OpenAI supports API Keys
+To use the OpenAI API with Trigger.dev, you'll need an API Key from OpenAI. 
+If you don't have one yet, you can obtain it from the OpenAI dashboard.
 
 ```ts
 import { OpenAI } from "@trigger.dev/openai";
@@ -36,6 +45,9 @@ const openai = new OpenAI({
 ```
 
 ## Example
+#1 Generate a joke
+ Here's an example of how to use the OpenAI integration in a Trigger.dev job.
+ In this example, we'll create a background task to generate a programming joke.
 
 ```ts
 new Job(client, {
@@ -66,6 +78,110 @@ new Job(client, {
     await io.logger.info("choices", response.choices);
   },
 });
+```
+#2  Generate Code Snippets
+In this example, we'll leverage Trigger.dev's background task to generate code snippets for
+ a given programming task:
+
+ ```ts
+new Job(client, {
+  id: "openai-tasks",
+  name: "OpenAI Tasks",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "openai.tasks",
+    schema: z.object({}),
+  }),
+  integrations: {
+    openai,
+  },
+  run: async (payload, io, ctx) => {
+    const programmingTask = `Create a function that checks if a string is a palindrome.`;
+
+    const response = await io.openai.backgroundCreateCompletion("background-completion", {
+      model: "gpt-3.5-turbo",
+      prompt: `Coding task: ${programmingTask}\n\n`,
+    });
+
+    await io.logger.info("codeSnippet", response.choices[0]?.text);
+  },
+});
+
+ ```
+#3 Summarize Text
+We'll use Trigger.dev's background task to summarize a lengthy article:
+
+```ts
+new Job(client, {
+  id: "openai-tasks",
+  name: "OpenAI Tasks",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "openai.tasks",
+    schema: z.object({}),
+  }),
+  integrations: {
+    openai,
+  },
+  run: async (payload, io, ctx) => {
+    const articleToSummarize = `Lorem ipsum. olor sit amet, consectetur adipiscing elit. 
+    Sed nec aliquet sapien. Pellentesque vitae nisi id purus luctus tincidunt. 
+    Proin condimentum malesuada turpis, eget tincidunt mauris viverra in.`;
+
+    const response = await io.openai.backgroundCreateCompletion("background-completion", {
+      model: "gpt-3.5-turbo",
+      prompt: `Please summarize the following article:\n\n${articleToSummarize}`,
+    });
+
+    await io.logger.info("summary", response.choices[0]?.text);
+  },
+});
+
+```
+#4 Draft Email Response
+we'll use Trigger.dev's background task to draft an email response based on a given email content:
+
+ts```
+new Job(client, {
+  id: "openai-tasks",
+  name: "OpenAI Tasks",
+  version: "0.0.1",
+  trigger: eventTrigger({
+    name: "openai.tasks",
+    schema: z.object({}),
+  }),
+  integrations: {
+    openai,
+  },
+  run: async (payload, io, ctx) => {
+    const emailContent = `Dear John,
+
+    Thank you for your inquiry. We appreciate your interest in our products. 
+    I have reviewed your request, and I'm pleased to inform you that we can 
+    accommodate your requirements. Please find the attached proposal for your 
+    reference. If you have any further questions, feel free to ask.
+
+    Best regards,
+    Jane Doe`;
+
+    const response = await io.openai.backgroundCreateChatCompletion("background-chat-completion", {
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "user",
+          content: emailContent,
+        },
+        {
+          role: "assistant",
+          content: "Draft a suitable response to the email above.",
+        },
+      ],
+    });
+
+    await io.logger.info("draftedEmailResponse", response.choices[0]?.text);
+  },
+});
+
 ```
 
 ## Tasks
