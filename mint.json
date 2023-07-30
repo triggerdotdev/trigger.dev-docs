@@ -121,6 +121,7 @@
             "documentation/guides/using-integrations-oauth"
           ]
         },
+        "documentation/guides/react-hooks",
         {
           "group": "Deployment",
           "pages": [
