@@ -17,7 +17,7 @@ You should fork the repository before starting so you can make changes and commi
 
 3. Choose "Web service"
 
-    ![new web service render](/images/new-web-service-render.png)
+   ![new web service render](/images/new-web-service-render.png)
 
 4. Click on "Connect With GitHub" (if you have not already done so). You will need to authorize Render to access your GitHub repositories.
 
@@ -25,19 +25,19 @@ You should fork the repository before starting so you can make changes and commi
 
 6. Render will detect the render.yaml file in your repository and auto fill the fields, add your app name now.
 
-    ![add app name render](/images/add-app-name-render.png)
+   ![add app name render](/images/add-app-name-render.png)
 
 7. Scrolldown, click on advanced. Here you will need to add the environment variables
 
-    ![advanced render](/images/advanced-render.png)
+   ![advanced render](/images/advanced-render.png)
 
 ### Gather your secret environment variables
 
-The process for generating and collecting the required environment variables is identical to the one described in the [Fly.io guide](/documentation/guides/deploy-to-flyio#gather-your-secret-environment-variables). Follow the steps there to generate and collect the required environment variables.
+The process for generating and collecting the required environment variables is identical to the one described in the [Fly.io guide](/documentation/guides/self-hosting/flyio#gather-your-secret-environment-variables). Follow the steps there to generate and collect the required environment variables.
 
 ### Set the environment variables
 
-The render.yaml file declares several environment variables that your app needs to run. These include the MAGIC_LINK_SECRET, SESSION_SECRET, and others. You need to manually set the values of these environment variables in the Render dashboard:
+The render.yaml file declares several environment variables that your app needs to run. These include the `ENCRYPTION_KEY`, `MAGIC_LINK_SECRET` and `SESSION_SECRET`, and others. You need to manually set the values of these environment variables in the Render dashboard:
 
 1. Click on "Add Environment Variable" to add a new environment variable.
 2. Enter the key and value for each environment variable declared in your render.yaml file. The key should match the name of the environment variable in the render.yaml file.
