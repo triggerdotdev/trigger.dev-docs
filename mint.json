@@ -101,7 +101,6 @@
             "documentation/guides/platforms/express"
           ]
         },
-
         "documentation/guides/cli",
         "documentation/guides/running-jobs",
         {
@@ -136,8 +135,8 @@
           "group": "Self hosting",
           "pages": [
             "documentation/guides/self-hosting",
-            "documentation/guides/deploy-to-flyio",
-            "documentation/guides/deploy-to-render",
+            "documentation/guides/self-hosting/flyio",
+            "documentation/guides/self-hosting/render",
             "documentation/guides/tunneling-platform"
           ]
         },
@@ -155,7 +154,10 @@
     },
     {
       "group": "Overview",
-      "pages": ["integrations/introduction", "integrations/create"]
+      "pages": [
+        "integrations/introduction",
+        "integrations/create"
+      ]
     },
     {
       "group": "Integrations",
@@ -169,17 +171,31 @@
           ]
         },
         {
+          "group": "Supabase",
+          "pages": [
+            "integrations/apis/supabase/introduction",
+            "integrations/apis/supabase/management",
+            "integrations/apis/supabase/client"
+          ]
+        },
+        {
           "group": "OpenAI",
-          "pages": ["integrations/apis/openai"]
+          "pages": [
+            "integrations/apis/openai"
+          ]
         },
         "integrations/apis/plain",
         {
           "group": "Resend",
-          "pages": ["integrations/apis/resend"]
+          "pages": [
+            "integrations/apis/resend"
+          ]
         },
         {
           "group": "Slack",
-          "pages": ["integrations/apis/slack"]
+          "pages": [
+            "integrations/apis/slack"
+          ]
         },
         "integrations/apis/typeform"
       ]
@@ -271,7 +287,10 @@
     },
     {
       "group": "Overview",
-      "pages": ["examples/introduction", "examples/examples-repository"]
+      "pages": [
+        "examples/introduction",
+        "examples/examples-repository"
+      ]
     }
   ],
   "footerSocials": {

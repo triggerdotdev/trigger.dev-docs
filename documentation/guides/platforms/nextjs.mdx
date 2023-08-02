@@ -64,6 +64,15 @@ export const config = {
 
 The above will match anything starting with `/api` except for `/api/trigger`.
 
+If you want to match all routes except for `/api/trigger`, you can use the following matcher:
+
+```ts middleware.ts
+// Match all routes other than /api/trigger
+export const config = {
+  matcher: ["/((?!api/trigger).*)"],
+};
+```
+
 For more information about middleware matchers, head over to the Next.js [middleware documentation](https://nextjs.org/docs/pages/building-your-application/routing/middleware#matcher).
 
 ### Clerk.com Auth Middleware
